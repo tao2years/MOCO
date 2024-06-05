@@ -9,11 +9,19 @@ import java.util.Collection;
 import java.util.Set;
 
 public class Utils {
-    public static void generateDotFile (Set<Edge> dotSet, int numNodes, String filePath) {
+    public static void generateDotFile(Set<Edge> dotSet, int numNodes, String filePath) {
+        if (dotSet == null) {
+            throw new IllegalArgumentException("dotSet cannot be null");
+        }
+
         StringBuilder dotContent = new StringBuilder();
         dotContent.append("digraph g {\n\n");
 
         for (Edge edge : dotSet) {
+            if (edge.getSource() == null || edge.getTarget() == null || edge.getApi() == null) {
+                System.err.println("Edge contains null values: " + edge);
+                continue;
+            }
             dotContent.append("\t")
                     .append(edge.getSource())
                     .append(" -> ")

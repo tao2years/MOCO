@@ -1,0 +1,507 @@
+[
+  {
+    "source": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "placeCup"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S0\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027false\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "turnOn"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "placeCup"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "placeCup"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "placeCup"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S0\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027false\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S2\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027false\u0027}\"}",
+    "name": "placeCup"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "placeCup"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S13\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "placeCup"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S2\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027false\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S0\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027false\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S0\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027false\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S0\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027false\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S2\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027false\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S3\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "turnOn"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S9\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S14\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S1\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S8\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S12\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addMilk"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S11\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "placeCup"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S10\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S7\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S15\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addWater"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S6\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027false\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "addCoffeeBean"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S5\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S4\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027false\u0027, \u0027beanReady\u0027:\u0027false\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "fetchCoffee"
+  },
+  {
+    "source": "Node{\"nodeId\":\"S16\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027false\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "target": "Node{\"nodeId\":\"S17\", \"content\":\"CoffeeMachine{\u0027waterReady\u0027:\u0027true\u0027, \u0027beanReady\u0027:\u0027true\u0027, \u0027milkReady\u0027:\u0027true\u0027, \u0027cupReady\u0027:\u0027true\u0027, \u0027thisTimeCoffeeReady\u0027:\u0027false\u0027, \u0027isWorking\u0027:\u0027false\u0027, \u0027isPowerOn\u0027:\u0027true\u0027}\"}",
+    "name": "placeCup"
+  }
+]
