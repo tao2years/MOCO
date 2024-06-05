@@ -151,46 +151,70 @@ public class CoffeeMachine {
         this.currentMilkVolume = currentMilkVolume;
     }
 
-    public void turnOn() {
-        this.isPowerOn = true;
+    public String turnOn() {
+        if (!isPowerOn) {
+            isPowerOn = true;
+            return "success";
+        } else {
+            return "skip";
+        }
     }
 
-    public void turnOff() {
-        this.isPowerOn = false;
+    public String turnOff() {
+        if (isPowerOn) {
+            isPowerOn = false;
+            return "success";
+        } else {
+            return "skip";
+        }
     }
 
-    public void addWater(){
+    public String addWater(){
         if (isPowerOn){
             int addWaterVolume = new Random().nextInt(MAX_WATER_VOLUME);
             currentWaterVolume = Math.min(currentWaterVolume + addWaterVolume, MAX_WATER_VOLUME);
             if (currentWaterVolume > 250) {
                 waterReady = true;
             }
+            return "success";
+        }else {
+            return "skip";
         }
     }
 
-    public void addCoffeeBean(){
+    public String addCoffeeBean(){
         if (isPowerOn) {
             int addCoffeeBeanVolume = new Random().nextInt(MAX_COFFEE_BEAN_VOLUME);
             currentBeanVolume = Math.min(currentBeanVolume + addCoffeeBeanVolume, MAX_COFFEE_BEAN_VOLUME);
             if (currentBeanVolume > 15) {
                 beanReady = true;
             }
+            return "success";
+        }else {
+            return "skip";
         }
     }
 
-    public void addMilk(){
+    public String addMilk(){
         if (isPowerOn) {
             int addMilkVolume = new Random().nextInt(MAX_MILK_VOLUME);
             currentMilkVolume = Math.min(currentMilkVolume + addMilkVolume, MAX_MILK_VOLUME);
             if (currentMilkVolume > 200) {
                 milkReady = true;
             }
+            return "success";
+        }else {
+            return "skip";
         }
     }
 
-    public void placeCup(){
-        this.cupReady = true;
+    public String placeCup(){
+        if (!cupReady){
+            this.cupReady = true;
+            return "success";
+        }else {
+            return "skip";
+        }
     }
 
     public String brewCoffee(int coffeeType) {
@@ -250,7 +274,7 @@ public class CoffeeMachine {
         return "Success";
     }
 
-    private void makingCoffee(int coffeeType){
+    private String makingCoffee(int coffeeType){
         this.isWorking = true;
         switch (coffeeType){
             case 1:
@@ -288,13 +312,15 @@ public class CoffeeMachine {
         }
 
         this.isWorking = false;
+        return "success";
     }
 
-    public void fetchCoffee(){
+    public String fetchCoffee(){
         if (this.thisTimeCoffeeReady){
             this.thisTimeCoffeeReady = false;
         }
         this.cupReady = false;
+        return "success";
     }
 
 

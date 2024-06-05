@@ -18,52 +18,68 @@ public class CMController {
     }
 
     public void turnOn(){
-        coffeeMachine.turnOn();
-        cmTwin.setPowerOn(true);
+        String result = coffeeMachine.turnOn();
+        if (result.equals("success"))
+            cmTwin.setPowerOn(true);
     }
 
     public void turnOff(){
-        coffeeMachine.turnOff();
-        cmTwin.setPowerOn(false);
+        String result = coffeeMachine.turnOff();
+        if (result.equals("success"))
+            cmTwin.setPowerOn(false);
     }
 
     public void addCoffeeBean(){
-        coffeeMachine.addCoffeeBean();
-        int currentBean = coffeeMachine.getCurrentBeanVolume();
-        boolean beanStatus = coffeeMachine.isBeanReady();
-        cmTwin.setCurrentBeanVolume(currentBean);
-        cmTwin.setBeanReady(beanStatus);
+        String result = coffeeMachine.addCoffeeBean();
+        if (result.equals("success")){
+            int currentBean = coffeeMachine.getCurrentBeanVolume();
+            boolean beanStatus = coffeeMachine.isBeanReady();
+            cmTwin.setCurrentBeanVolume(currentBean);
+            cmTwin.setBeanReady(beanStatus);
+        }
     }
 
     public void addWater(){
-        coffeeMachine.addWater();
-        int currentWater = coffeeMachine.getCurrentWaterVolume();
-        boolean waterStatus = coffeeMachine.isWaterReady();
-        cmTwin.setCurrentWaterVolume(currentWater);
-        cmTwin.setWaterReady(waterStatus);
+        String result = coffeeMachine.addWater();
+        if (result.equals("success")){
+            int currentWater = coffeeMachine.getCurrentWaterVolume();
+            boolean waterStatus = coffeeMachine.isWaterReady();
+            cmTwin.setCurrentWaterVolume(currentWater);
+            cmTwin.setWaterReady(waterStatus);
+        }
     }
 
     public void addMilk(){
-        coffeeMachine.addMilk();
-        int currentMilk = coffeeMachine.getCurrentMilkVolume();
-        boolean milkStatus = coffeeMachine.isMilkReady();
-        cmTwin.setCurrentMilkVolume(currentMilk);
-        cmTwin.setMilkReady(milkStatus);
+        String result = coffeeMachine.addMilk();
+        if (result.equals("success")){
+            int currentMilk = coffeeMachine.getCurrentMilkVolume();
+            boolean milkStatus = coffeeMachine.isMilkReady();
+            cmTwin.setCurrentMilkVolume(currentMilk);
+            cmTwin.setMilkReady(milkStatus);
+        }
     }
 
     public void placeCup() {
-        coffeeMachine.placeCup();
-        cmTwin.setCupReady(true);
+        String result = coffeeMachine.placeCup();
+        if (result.equals("success"))
+            cmTwin.setCupReady(true);
     }
 
     public void fetchCoffee(){
-        coffeeMachine.fetchCoffee();
-        cmTwin.setCupReady(false);
-        cmTwin.setThisTimeCoffeeReady(false);
+        String result = coffeeMachine.fetchCoffee();
+        if (result.equals("success")){
+            cmTwin.setCupReady(false);
+            cmTwin.setThisTimeCoffeeReady(false);
+        }
     }
 
+//    public void brewCoffee(Object[] type) {
+//        String result = coffeeMachine.brewCoffee((Integer) type[0]);
+//        cmTwin.updateAllFromString(coffeeMachine.toString());
+//    }
+
     public void brewCoffee(int type) {
-        coffeeMachine.brewCoffee(type);
+        String result = coffeeMachine.brewCoffee(type);
         cmTwin.updateAllFromString(coffeeMachine.toString());
     }
 
