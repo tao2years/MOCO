@@ -1,8 +1,8 @@
 package IoTSystem;
 
 import IoTSystem.DeviceController.*;
-import IoTSystem.DeviceTwin.CMTwin;
-import VirtualDevice.CoffeeMachine;
+import IoTSystem.DeviceTwin.*;
+import VirtualDevice.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,7 +33,11 @@ public class TaskScheduler {
     }
 
     public TaskScheduler(int threadPoolSize, CMController cmController, GatewayController gatewayController, LightController lightController, VCController vcController, WMController wmController) {
-        this.executor = Executors.newFixedThreadPool(threadPoolSize);
+        if (threadPoolSize == 0) {
+            this.executor = Executors.newSingleThreadExecutor();
+        }else{
+            this.executor = Executors.newFixedThreadPool(threadPoolSize);
+        }
         this.messageQueue = new MessageQueue();
         this.cmController = cmController;
         this.gatewayController = gatewayController;
@@ -74,11 +78,42 @@ public class TaskScheduler {
                 parsedArgs[i] = parseArg(args[i]);
                 argTypes[i] = getPrimitiveType(parsedArgs[i].getClass());
             }
-            Method method = cmController.getClass().getMethod(api, argTypes);
-            method.invoke(cmController,  parsedArgs);
-            LOGGER.info("[Waiting...]" + message);
-            sleep(1000);
-            cmController.printInternalState();
+            LOGGER.info("[Handling...]" + message);
+            switch (deviceType) {
+                case "CoffeeMachine":
+                    Method method = cmController.getClass().getMethod(api, argTypes);
+                    method.invoke(cmController,  parsedArgs);
+//                    sleep(1000);
+                    cmController.printInternalState();
+                    break;
+                case "Gateway":
+                    Method method1 = gatewayController.getClass().getMethod(api, argTypes);
+                    method1.invoke(gatewayController, parsedArgs);
+//                    sleep(1000);
+                    gatewayController.printInternalState();
+                    break;
+                case "Yeelight":
+                    Method method2 = lightController.getClass().getMethod(api, argTypes);
+                    method2.invoke(lightController, parsedArgs);
+//                    sleep(1000);
+                    lightController.printInternalState();
+                    break;
+                case "VideoCamera":
+                    Method method3 = vcController.getClass().getMethod(api, argTypes);
+                    method3.invoke(vcController, parsedArgs);
+//                    sleep(1000);
+                    vcController.printInternalState();
+                    break;
+                case "WashingMachine":
+                    Method method4 = wmController.getClass().getMethod(api, argTypes);
+                    method4.invoke(wmController, parsedArgs);
+//                    sleep(1000);
+                    wmController.printInternalState();
+                    break;
+                default:
+                    LOGGER.error("Device type not found: "+deviceType);
+            }
+
         } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -88,7 +123,8 @@ public class TaskScheduler {
         try {
             Thread.sleep(ms);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.info("Thread interrupted");
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -125,10 +161,26 @@ public class TaskScheduler {
     }
 
     public static void main(String[] args) {
+
         CoffeeMachine coffeeMachine = new CoffeeMachine();
         CMTwin cmTwin = new CMTwin();
         CMController cmController = new CMController("CM001", coffeeMachine, cmTwin);
-        TaskScheduler taskScheduler = new TaskScheduler(0, cmController);
+
+        Gateway gateway = new Gateway();
+        GatewayTwin gatewayTwin = new GatewayTwin();
+        GatewayController transGatewayController = new GatewayController("gateway1", gateway, gatewayTwin);
+
+        Yeelight yeelight = new Yeelight(10, true, 255, 255, 255);
+        LightTwin lightTwin = new LightTwin(10, true, 255, 255, 255);
+        LightController lightController = new LightController("light1", yeelight, lightTwin);
+
+        VCController vcController = new VCController("vc001", new VideoCamera(), new VCTwin());
+
+        WashingMachine wm = new WashingMachine();
+        WMTwin wmTwin = new WMTwin();
+        WMController wmController = new WMController("wm1", wm, wmTwin);
+
+        TaskScheduler taskScheduler = new TaskScheduler(0, cmController, transGatewayController, lightController, vcController, wmController);
 
         // Test adding and getting messages
         Message message1 = new Message("CoffeeMachine", "turnOn", new String[]{});
@@ -145,8 +197,56 @@ public class TaskScheduler {
         taskScheduler.addMessage(message5);
         taskScheduler.addMessage(message6);
 
+        Message wmMessage1 = new Message("WashingMachine", "turnOn", new String[]{});
+        Message wmMessage2 = new Message("WashingMachine", "openDoor", new String[]{});
+        Message wmMessage3 = new Message("WashingMachine", "closeDoor", new String[]{});
+        Message wmMessage4 = new Message("WashingMachine", "fillWater", new String[]{});
+        taskScheduler.addMessage(wmMessage1);
+        taskScheduler.addMessage(wmMessage2);
+        taskScheduler.addMessage(wmMessage3);
+        taskScheduler.addMessage(wmMessage4);
+
+        Message gwMessage1 = new Message("Gateway", "turnLightOn", new String[]{});
+        Message gwMessage2 = new Message("Gateway", "turnLightOff", new String[]{});
+        Message gwMessage3 = new Message("Gateway", "setLightBrightness", new String[]{"50"});
+        Message gwMessage4 = new Message("Gateway", "turnAlarmOn", new String[]{});
+        Message gwMessage5 = new Message("Gateway", "turnAlarmOff", new String[]{});
+        Message gwMessage6 = new Message("Gateway", "addDevice", new String[]{"device1"});
+        Message gwMessage7 = new Message("Gateway", "removeDevice", new String[]{"device1"});
+        taskScheduler.addMessage(gwMessage1);
+        taskScheduler.addMessage(gwMessage2);
+        taskScheduler.addMessage(gwMessage3);
+        taskScheduler.addMessage(gwMessage4);
+        taskScheduler.addMessage(gwMessage5);
+        taskScheduler.addMessage(gwMessage6);
+        taskScheduler.addMessage(gwMessage7);
+
+        Message vcMessage1 = new Message("VideoCamera", "turnOnMotionRecord", new String[]{});
+        Message vcMessage2 = new Message("VideoCamera", "turnOnLight", new String[]{});
+        Message vcMessage3 = new Message("VideoCamera", "turnOnFullColor", new String[]{});
+        Message vcMessage4 = new Message("VideoCamera", "turnOnFlip", new String[]{});
+        Message vcMessage5 = new Message("VideoCamera", "turnOnImproveProgram", new String[]{});
+        Message vcMessage6 = new Message("VideoCamera", "turnOnWdr", new String[]{});
+        Message vcMessage7 = new Message("VideoCamera", "turnOnTrack", new String[]{});
+        taskScheduler.addMessage(vcMessage1);
+        taskScheduler.addMessage(vcMessage2);
+        taskScheduler.addMessage(vcMessage3);
+        taskScheduler.addMessage(vcMessage4);
+        taskScheduler.addMessage(vcMessage5);
+        taskScheduler.addMessage(vcMessage6);
+        taskScheduler.addMessage(vcMessage7);
+
+        Message lcMessage1 = new Message("Yeelight", "turnOn", new String[]{});
+        Message lcMessage2 = new Message("Yeelight", "turnOff", new String[]{});
+        Message lcMessage3 = new Message("Yeelight", "setBrightness", new String[]{"50"});
+        Message lcMessage4 = new Message("Yeelight", "setRGB", new String[]{"120", "130", "111"});
+        taskScheduler.addMessage(lcMessage1);
+        taskScheduler.addMessage(lcMessage2);
+        taskScheduler.addMessage(lcMessage3);
+        taskScheduler.addMessage(lcMessage4);
+
         taskScheduler.start();
-        sleep(1000);
+        sleep(2000);
         taskScheduler.shutdown();
     }
 
