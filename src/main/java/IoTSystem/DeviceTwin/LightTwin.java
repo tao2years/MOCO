@@ -60,8 +60,8 @@ public class LightTwin {
         return rgb;
     }
 
-    public void setRgb(int[] rgb) {
-        this.rgb = rgb;
+    public void setRgb(int r, int g, int b) {
+        this.rgb = new int[] {r, g, b};
     }
 
     public String toSystemString() {
