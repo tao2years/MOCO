@@ -1,0 +1,20 @@
+digraph g {
+
+	S7 -> S7 [label="setBrightness"];
+	S5 -> S7 [label="setBrightness"];
+	S6 -> S2 [label="turnOff"];
+	S4 -> S5 [label="setRGB"];
+	S3 -> S7 [label="turnOn"];
+	S4 -> S0 [label="turnOff"];
+	S1 -> S5 [label="turnOn"];
+	S4 -> S6 [label="setBrightness"];
+	S6 -> S6 [label="setBrightness"];
+	S7 -> S7 [label="setRGB"];
+	S5 -> S5 [label="setRGB"];
+	S6 -> S7 [label="setRGB"];
+	S7 -> S3 [label="turnOff"];
+	S2 -> S6 [label="turnOn"];
+	S0 -> S4 [label="turnOn"];
+	S5 -> S1 [label="turnOff"];
+
+}
