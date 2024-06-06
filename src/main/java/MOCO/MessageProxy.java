@@ -39,7 +39,7 @@ public class MessageProxy {
             if (ExecutionChecker.preCheck(message, currentState, gateway_outEdgeApis, light_outEdgeApis, cm_outEdgeApis, vc_outEdgeApis, wm_outEdgeApis)){
                 taskScheduler.addMessage(message);
             }else{
-                LOGGER.info("Current Msg can not be executed at the current state.");
+                LOGGER.info("Current Msg can not be executed at the current state. " + message);
             }
         }else {
             taskScheduler.addMessage(message);

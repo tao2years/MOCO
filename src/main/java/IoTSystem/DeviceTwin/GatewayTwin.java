@@ -81,7 +81,6 @@ public class GatewayTwin {
         JSONObject json = JSON.parseObject(input.replace("Gateway", ""));
         this.lightOn = Boolean.parseBoolean(json.get("lightOn").toString());
         this.alarmOn = Boolean.parseBoolean(json.get("alarmOn").toString());
-        this.lightBrightness = Integer.parseInt(json.get("lightBrightness").toString());
     }
 
     public String toSystemDeviceString() {

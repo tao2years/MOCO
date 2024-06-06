@@ -273,17 +273,17 @@ public class CoffeeMachine_Model {
 
     private static boolean checkSizeConsistency(int[] sizeHistory) {
         if (sizeHistory[0] == 0) {
-            return false; // 初始状态，不一致
+            return false;
         }
 
         int size = sizeHistory[0];
         for (int i = 1; i < sizeHistory.length; i++) {
             if (sizeHistory[i] != size) {
-                return false; // 不一致
+                return false;
             }
         }
 
-        return true; // 一致
+        return true;
     }
 
 }

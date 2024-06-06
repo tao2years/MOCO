@@ -80,7 +80,7 @@ public class Main {
         wmTwin = new WMTwin();
         wmController = new WMController("wm001", wm, wmTwin);
 
-        taskScheduler = new TaskScheduler(0, cmController, transGatewayController, lightController, vcController, wmController);
+        taskScheduler = new TaskScheduler(5, cmController, transGatewayController, lightController, vcController, wmController);
     }
 
     public static void loadBehaviorModelsAndOutApis() {
@@ -106,6 +106,7 @@ public class Main {
         currentState = getCurrentStateBasedOnMsg(message2);
         messageProxy.addMessage(message2, currentState);
 
+//        /*
         // Add messages for WashingMachine
         Message wmMessage1 = new Message("WashingMachine", "turnOn", new String[]{});
         currentState = getCurrentStateBasedOnMsg(wmMessage1);
@@ -201,6 +202,8 @@ public class Main {
         Message lcMessage4 = new Message("Yeelight", "setRGB", new String[]{"120", "130", "111"});
         currentState = getCurrentStateBasedOnMsg(lcMessage4);
         messageProxy.addMessage(lcMessage4, currentState);
+
+//         */
     }
 
     public static String getCurrentStateBasedOnMsg (Message message){
@@ -230,6 +233,9 @@ public class Main {
 
         MessageProxy messageProxy = new MessageProxy(taskScheduler, gateway_outEdgeApis, light_outEdgeApis, cm_outEdgeApis, vc_outEdgeApis, wm_outEdgeApis, true);
 
+        messageProxy.setProxyOn(false);
+
+        long startTime = System.nanoTime(); // start time of the program
         taskScheduler.start();
 
         sendMessage(messageProxy);
@@ -242,5 +248,8 @@ public class Main {
         String currentState2 = getCurrentStateBasedOnMsg(message2);
         messageProxy.addMessage(message2, currentState2);
         taskScheduler.shutdown();
+        long endTime = System.nanoTime(); // end time of the program
+        double duration = (endTime - startTime) / 1000000000.0;
+        LOGGER.info("Program ran for " + duration + " seconds.");
     }
 }

@@ -11,14 +11,12 @@ import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class TaskScheduler {
     private static final Logger LOGGER = LogManager.getLogger();
     private final ExecutorService executor;
+    private static DelayQueue<DelayedMessage> delayedQueue = new DelayQueue<>();;
     private MessageQueue messageQueue;
     private CMController cmController;
     private GatewayController gatewayController;
@@ -34,6 +32,7 @@ public class TaskScheduler {
         }
         this.messageQueue = new MessageQueue();
         this.cmController = cmController;
+        this.delayedQueue = new DelayQueue<>();
     }
 
     public TaskScheduler(int threadPoolSize, CMController cmController, GatewayController gatewayController, LightController lightController, VCController vcController, WMController wmController) {
@@ -44,6 +43,7 @@ public class TaskScheduler {
         }
         this.messageQueue = new MessageQueue();
         this.cmController = cmController;
+        this.delayedQueue = new DelayQueue<>();
         this.gatewayController = gatewayController;
         this.lightController = lightController;
         this.vcController = vcController;
@@ -56,65 +56,83 @@ public class TaskScheduler {
 
     // Start the task scheduler
     public void start() {
-        executor.submit(() -> {
+//        executor.submit(() -> {
+//            while (!Thread.currentThread().isInterrupted()) {
+//                // Take the next message from the queue
+//                Message message = messageQueue.getMessage();
+//                // Dispatch the message to the appropriate controller
+//                dispatchMessage(message);
+//            }
+//        });
+        executor.execute(() -> {
             while (!Thread.currentThread().isInterrupted()) {
-                // Take the next message from the queue
                 Message message = messageQueue.getMessage();
-                // Dispatch the message to the appropriate controller
                 dispatchMessage(message);
+            }
+        });
+        executor.execute(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                try {
+                    DelayedMessage delayedMessage = delayedQueue.take();
+                    messageQueue.addMessage(delayedMessage.getMessage());
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
         });
     }
 
     // Method to dispatch message to the appropriate controller
     private void dispatchMessage(Message message) {
-        try {
-            String deviceType = message.getDeviceType();
-            String api = message.getDeviceAPI();
-            String[] args = message.getDeviceAPIArgs();
-            // Dispatch the message to the appropriate controller
-            if (args == null) {
-                args = new String[0];
-            }
-            Class<?>[] argTypes = new Class[args.length];
-            Object[] parsedArgs = new Object[args.length];
-            for (int i = 0; i < args.length; i++) {
-                parsedArgs[i] = parseArg(args[i]);
-                argTypes[i] = getPrimitiveType(parsedArgs[i].getClass());
-            }
-            LOGGER.info("[Handling...]" + message);
-            switch (deviceType) {
-                case "CoffeeMachine":
-                    String state = cmController.getCmTwin().toSystemStateString().replace("CMTwin","CoffeeMachine");
-                    invokeMethod(cmController, api, argTypes, parsedArgs, state);
-                    cmController.printInternalState();
-                    break;
-                case "Gateway":
-                    state = gatewayController.getGatewayTwin().toSystemString().replace("GatewayTwin","Gateway");
-                    invokeMethod(gatewayController, api, argTypes, parsedArgs, state);
-                    gatewayController.printInternalState();
-                    break;
-                case "Yeelight":
-                    state = lightController.getLightTwin().toSystemString().replace("LightTwin","Yeelight");
-                    invokeMethod(lightController, api, argTypes, parsedArgs, state);
-                    lightController.printInternalState();
-                    break;
-                case "VideoCamera":
-                    state = vcController.getVcTwin().toSystemString().replace("VCTwin","VideoCamera");
-                    invokeMethod(vcController, api, argTypes, parsedArgs, state);
-                    vcController.printInternalState();
-                    break;
-                case "WashingMachine":
-                    state = wmController.getWmTwin().toString().replace("WMTwin","WashingMachine");
-                    invokeMethod(wmController, api, argTypes, parsedArgs, state);
-                    wmController.printInternalState();
-                    break;
-                default:
-                    LOGGER.error("Device type not found: " + deviceType);
-            }
+        if (message != null) {
+            try {
+                LOGGER.info("[Handling...]" + message);
+                String deviceType = message.getDeviceType();
+                String api = message.getDeviceAPI();
+                String[] args = message.getDeviceAPIArgs();
+                // Dispatch the message to the appropriate controller
+                if (args == null) {
+                    args = new String[0];
+                }
+                Class<?>[] argTypes = new Class[args.length];
+                Object[] parsedArgs = new Object[args.length];
+                for (int i = 0; i < args.length; i++) {
+                    parsedArgs[i] = parseArg(args[i]);
+                    argTypes[i] = getPrimitiveType(parsedArgs[i].getClass());
+                }
+                switch (deviceType) {
+                    case "CoffeeMachine":
+                        String state = cmController.getCmTwin().toSystemStateString().replace("CMTwin","CoffeeMachine");
+                        invokeMethod(cmController, api, argTypes, parsedArgs, state, message);
+                        cmController.printInternalState();
+                        break;
+                    case "Gateway":
+                        state = gatewayController.getGatewayTwin().toSystemString().replace("GatewayTwin","Gateway");
+                        invokeMethod(gatewayController, api, argTypes, parsedArgs, state, message);
+                        gatewayController.printInternalState();
+                        break;
+                    case "Yeelight":
+                        state = lightController.getLightTwin().toSystemString().replace("LightTwin","Yeelight");
+                        invokeMethod(lightController, api, argTypes, parsedArgs, state, message);
+                        lightController.printInternalState();
+                        break;
+                    case "VideoCamera":
+                        state = vcController.getVcTwin().toSystemString().replace("VCTwin","VideoCamera");
+                        invokeMethod(vcController, api, argTypes, parsedArgs, state, message);
+                        vcController.printInternalState();
+                        break;
+                    case "WashingMachine":
+                        state = wmController.getWmTwin().toString().replace("WMTwin","WashingMachine");
+                        invokeMethod(wmController, api, argTypes, parsedArgs, state, message);
+                        wmController.printInternalState();
+                        break;
+                    default:
+                        LOGGER.error("Device type not found: " + deviceType);
+                }
 
-        } catch (NoSuchMethodException | InterruptedException e) {
-            e.printStackTrace();
+            } catch (NoSuchMethodException | InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -127,7 +145,7 @@ public class TaskScheduler {
         }
     }
 
-    public static void invokeMethod(Object controller, String methodName, Class<?>[] argTypes, Object[] args, String currentState) throws NoSuchMethodException, InterruptedException {
+    public static void invokeMethod(Object controller, String methodName, Class<?>[] argTypes, Object[] args, String currentState, Message message) throws NoSuchMethodException, InterruptedException {
         Method method = controller.getClass().getMethod(methodName, argTypes);
         CountDownLatch latch = new CountDownLatch(1);
 
@@ -138,8 +156,7 @@ public class TaskScheduler {
                 e.printStackTrace();
             } finally {
                 LOGGER.info("[Done] " + methodName);
-                ArrayList<String> resolution =  ExecutionChecker.postCheck(methodName, currentState, controller);
-                LOGGER.info("[Resolution] " + resolution);
+//                ExecutionChecker.postCheck(methodName, currentState, controller, delayedQueue, message);
                 latch.countDown();
             }
         }).start();
@@ -175,7 +192,6 @@ public class TaskScheduler {
         if (wrapper == Integer.class) {
             return int.class;
         }
-        // 可以扩展其他类型转换
         return wrapper;
     }
 

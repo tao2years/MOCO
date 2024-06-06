@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Utils {
 
@@ -81,17 +82,104 @@ public class Utils {
         return outEdgeApis;
     }
 
+    public static List<List<String>> findShortestPaths(Graph<Object, Object> behaviorGraph, String node1, String node2, String node0) {
+        List<List<String>> paths = new ArrayList<>();
+        if (!bfs(behaviorGraph, node1, node2, paths)) {
+            List<List<String>> pathFromNode0 = new ArrayList<>();
+            bfs(behaviorGraph, node0, node1, pathFromNode0);
+            if (!pathFromNode0.isEmpty()) {
+                for (List<String> path : pathFromNode0) {
+                    path.add(0, "START_FROM_ORIGIN");
+                }
+                paths = pathFromNode0.subList(0, Math.min(3, pathFromNode0.size()));
+            } else {
+                paths.add(new ArrayList<>());
+            }
+        } else {
+            paths = paths.subList(0, Math.min(3, paths.size()));
+        }
+        return paths;
+    }
+
+    private static boolean bfs(Graph<Object, Object> graph, String start, String end, List<List<String>> allPaths) {
+        Queue<PathNode> queue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+        queue.offer(new PathNode(start, new ArrayList<>()));
+        boolean found = false;
+
+        while (!queue.isEmpty()) {
+            PathNode current = queue.poll();
+            String lastNode = current.node;
+
+            if (lastNode.equals(end)) {
+                allPaths.add(new ArrayList<>(current.path));
+                found = true;
+                continue;
+            }
+
+            if (visited.contains(lastNode)) {
+                continue;
+            }
+            visited.add(lastNode);
+
+            for (Object edgeObj : graph.outEdges(lastNode)) {
+                graph.Edge edge = (graph.Edge) edgeObj;
+                String neighbor = (String) edge.getTarget();
+                if (!visited.contains(neighbor)) {
+                    List<String> newPath = new ArrayList<>(current.path);
+                    newPath.add(edge.getName());
+                    queue.offer(new PathNode(neighbor, newPath));
+                }
+            }
+        }
+        return found;
+    }
+
+    private static class PathNode {
+        String node;
+        List<String> path;
+
+        PathNode(String node, List<String> path) {
+            this.node = node;
+            this.path = path;
+        }
+    }
+
     public static void main(String[] args) {
-        String fileName = "src/main/java/MOCO/modelFiles/gateway.json";
+        String fileName = "src/main/java/MOCO/modelFiles/yeelight.json";
         Utils utils = new Utils();
         Graph<Object, Object> gateway_behaviorGraph = utils.loadGraphFromFile(fileName);
         Collection<graph.Edge> edges = gateway_behaviorGraph.getEdges();
-        edges.forEach(System.out::println);
+
+        String S3 = "";
+        String S4 = "";
+        String S0 = "";
+
+        for (graph.Edge edge : edges) {
+            if (edge.getSource().contains("S3")) {
+                LOGGER.info(edge.getSource());
+                S3 = edge.getSource();
+            }
+            if (edge.getSource().contains("S4")) {
+                S4 = edge.getSource();
+            }
+            if (edge.getSource().contains("S0")) {
+                S0 = edge.getSource();
+            }
+        }
 
         Map<String, Set<String>> outEdgeApis = loadOutEdgeApis(gateway_behaviorGraph);
+
 
         for (Map.Entry<String, Set<String>> entry : outEdgeApis.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
+
+        List<List<String>> paths = findShortestPaths(gateway_behaviorGraph, S3, S4, S0);
+        for (List<String> path : paths) {
+            System.out.println(path);
+        }
+
     }
+
 }
