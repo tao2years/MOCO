@@ -2,12 +2,16 @@ package IoTSystem;
 
 import IoTSystem.DeviceController.*;
 import IoTSystem.DeviceTwin.*;
+import MOCO.ExecutionChecker;
 import VirtualDevice.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -81,40 +85,35 @@ public class TaskScheduler {
             LOGGER.info("[Handling...]" + message);
             switch (deviceType) {
                 case "CoffeeMachine":
-                    Method method = cmController.getClass().getMethod(api, argTypes);
-                    method.invoke(cmController,  parsedArgs);
-//                    sleep(1000);
+                    String state = cmController.getCmTwin().toSystemStateString().replace("CMTwin","CoffeeMachine");
+                    invokeMethod(cmController, api, argTypes, parsedArgs, state);
                     cmController.printInternalState();
                     break;
                 case "Gateway":
-                    Method method1 = gatewayController.getClass().getMethod(api, argTypes);
-                    method1.invoke(gatewayController, parsedArgs);
-//                    sleep(1000);
+                    state = gatewayController.getGatewayTwin().toSystemString().replace("GatewayTwin","Gateway");
+                    invokeMethod(gatewayController, api, argTypes, parsedArgs, state);
                     gatewayController.printInternalState();
                     break;
                 case "Yeelight":
-                    Method method2 = lightController.getClass().getMethod(api, argTypes);
-                    method2.invoke(lightController, parsedArgs);
-//                    sleep(1000);
+                    state = lightController.getLightTwin().toSystemString().replace("LightTwin","Yeelight");
+                    invokeMethod(lightController, api, argTypes, parsedArgs, state);
                     lightController.printInternalState();
                     break;
                 case "VideoCamera":
-                    Method method3 = vcController.getClass().getMethod(api, argTypes);
-                    method3.invoke(vcController, parsedArgs);
-//                    sleep(1000);
+                    state = vcController.getVcTwin().toSystemString().replace("VCTwin","VideoCamera");
+                    invokeMethod(vcController, api, argTypes, parsedArgs, state);
                     vcController.printInternalState();
                     break;
                 case "WashingMachine":
-                    Method method4 = wmController.getClass().getMethod(api, argTypes);
-                    method4.invoke(wmController, parsedArgs);
-//                    sleep(1000);
+                    state = wmController.getWmTwin().toString().replace("WMTwin","WashingMachine");
+                    invokeMethod(wmController, api, argTypes, parsedArgs, state);
                     wmController.printInternalState();
                     break;
                 default:
-                    LOGGER.error("Device type not found: "+deviceType);
+                    LOGGER.error("Device type not found: " + deviceType);
             }
 
-        } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+        } catch (NoSuchMethodException | InterruptedException e) {
             e.printStackTrace();
         }
     }
@@ -126,6 +125,26 @@ public class TaskScheduler {
             LOGGER.info("Thread interrupted");
             Thread.currentThread().interrupt();
         }
+    }
+
+    public static void invokeMethod(Object controller, String methodName, Class<?>[] argTypes, Object[] args, String currentState) throws NoSuchMethodException, InterruptedException {
+        Method method = controller.getClass().getMethod(methodName, argTypes);
+        CountDownLatch latch = new CountDownLatch(1);
+
+        new Thread(() -> {
+            try {
+                method.invoke(controller, args);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                LOGGER.info("[Done] " + methodName);
+                ArrayList<String> resolution =  ExecutionChecker.postCheck(methodName, currentState, controller);
+                LOGGER.info("[Resolution] " + resolution);
+                latch.countDown();
+            }
+        }).start();
+
+//        latch.await();
     }
 
     private Object parseArg(String arg) {

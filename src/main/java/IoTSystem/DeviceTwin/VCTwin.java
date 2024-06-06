@@ -179,6 +179,41 @@ public class VCTwin {
                 '}';
     }
 
+    public void setTargetState(String input) {
+        JSONObject json = JSON.parseObject(input.replace("VideoCamera", ""));
+        this.powerOn = json.getBoolean("powerOn");
+        this.motionRecord = json.getBoolean("motionRecord");
+        this.light = json.getBoolean("light");
+        this.fullColor = json.getBoolean("fullColor");
+        this.flip = json.getBoolean("flip");
+        this.improveProgram = json.getBoolean("improveProgram");
+        this.wdr = json.getBoolean("wdr");
+        this.track = json.getBoolean("track");
+        this.watermark = json.getBoolean("watermark");
+    }
+
+    public String toSystemDeviceString() {
+        boolean sdcardStatusBoolean = sdcardStatus > 0;
+        boolean maxClientBoolean = maxClient > 0;
+        boolean nightModeBoolean = nightMode > 0;
+        boolean miniLevelBoolean = miniLevel > 0;
+        return "VideoCamera{" +
+                "'powerOn':" + powerOn +
+                ", 'motionRecord':" + motionRecord +
+                ", 'light':" + light +
+                ", 'fullColor':" + fullColor +
+                ", 'flip':" + flip +
+                ", 'improveProgram':" + improveProgram +
+                ", 'wdr':" + wdr +
+                ", 'track':" + track +
+                ", 'sdcardStatus':" + sdcardStatusBoolean +
+                ", 'watermark':" + watermark +
+                ", 'maxClient':" + maxClientBoolean +
+                ", 'nightMode':" + nightModeBoolean +
+                ", 'miniLevel':" + miniLevelBoolean +
+                '}';
+    }
+
     @Override
     public String toString() {
         return "VCTwin{" +

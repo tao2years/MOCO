@@ -11,6 +11,30 @@ public class CMController {
     CoffeeMachine coffeeMachine;
     CMTwin cmTwin;
 
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public CoffeeMachine getCoffeeMachine() {
+        return coffeeMachine;
+    }
+
+    public void setCoffeeMachine(CoffeeMachine coffeeMachine) {
+        this.coffeeMachine = coffeeMachine;
+    }
+
+    public CMTwin getCmTwin() {
+        return cmTwin;
+    }
+
+    public void setCmTwin(CMTwin cmTwin) {
+        this.cmTwin = cmTwin;
+    }
+
     public CMController(String deviceId, CoffeeMachine coffeeMachine, CMTwin cmTwin) {
         this.deviceId = deviceId;
         this.coffeeMachine = coffeeMachine;

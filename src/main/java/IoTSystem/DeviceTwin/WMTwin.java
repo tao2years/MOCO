@@ -91,6 +91,26 @@ public class WMTwin {
                 "}";
     }
 
+    public void setTargetState(String input) {
+        JSONObject json = JSON.parseObject(input.replace("WashingMachine", ""));
+        this.powerOn = json.getBoolean("powerOn");
+        this.doorOpen = json.getBoolean("doorOpen");
+        this.waterIn = json.getBoolean("waterIn");
+        this.washing = json.getBoolean("washing");
+        this.rinsing = json.getBoolean("rinsing");
+        this.spinning = json.getBoolean("spinning");
+    }
+    public String toDeviceString() {
+        return "WashingMachine{" +
+                "'powerOn':" + powerOn +
+                ", 'doorOpen':" + doorOpen +
+                ", 'waterIn':" + waterIn +
+                ", 'washing':" + washing +
+                ", 'rinsing':" + rinsing +
+                ", 'spinning':" + spinning +
+                "}";
+    }
+
     public static WMTwin fromString(String input) {
         JSONObject json = JSON.parseObject(input.replace("WMTwin", ""));
         return new WMTwin(json.getBoolean("powerOn"), json.getBoolean("doorOpen"), json.getBoolean("waterIn"), json.getBoolean("washing"), json.getBoolean("rinsing"), json.getBoolean("spinning"));

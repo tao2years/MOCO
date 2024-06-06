@@ -11,6 +11,30 @@ public class LightController {
     Yeelight yeelight;
     LightTwin lightTwin;
 
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public Yeelight getYeelight() {
+        return yeelight;
+    }
+
+    public void setYeelight(Yeelight yeelight) {
+        this.yeelight = yeelight;
+    }
+
+    public LightTwin getLightTwin() {
+        return lightTwin;
+    }
+
+    public void setLightTwin(LightTwin lightTwin) {
+        this.lightTwin = lightTwin;
+    }
+
     public LightController(String deviceId, Yeelight yeelight, LightTwin lightTwin) {
         this.deviceId = deviceId;
         this.yeelight = yeelight;

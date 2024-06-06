@@ -11,6 +11,30 @@ public class GatewayController {
     Gateway gateway;
     GatewayTwin gatewayTwin;
 
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public Gateway getGateway() {
+        return gateway;
+    }
+
+    public void setGateway(Gateway gateway) {
+        this.gateway = gateway;
+    }
+
+    public GatewayTwin getGatewayTwin() {
+        return gatewayTwin;
+    }
+
+    public void setGatewayTwin(GatewayTwin gatewayTwin) {
+        this.gatewayTwin = gatewayTwin;
+    }
+
     public GatewayController(String deviceId, Gateway gateway, GatewayTwin gatewayTwin) {
         this.deviceId = deviceId;
         this.gateway = gateway;

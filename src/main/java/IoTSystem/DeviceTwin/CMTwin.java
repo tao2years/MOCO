@@ -154,6 +154,17 @@ public class CMTwin {
                 '}';
     }
 
+    public void setTargetState(String input) {
+        JSONObject json = JSON.parseObject(input.replace("CoffeeMachine", ""));
+        this.waterReady = Boolean.parseBoolean(json.get("waterReady").toString());
+        this.beanReady = Boolean.parseBoolean(json.get("beanReady").toString());
+        this.milkReady = Boolean.parseBoolean(json.get("milkReady").toString());
+        this.cupReady = Boolean.parseBoolean(json.get("cupReady").toString());
+        this.thisTimeCoffeeReady = Boolean.parseBoolean(json.get("thisTimeCoffeeReady").toString());
+        this.isWorking = Boolean.parseBoolean(json.get("isWorking").toString());
+        this.isPowerOn = Boolean.parseBoolean(json.get("isPowerOn").toString());
+    }
+
     public static CMTwin fromString(String input) {
         JSONObject json = JSON.parseObject(input.replace("CMTwin", ""));
         return new CMTwin(json.get("waterReady"), json.get("beanReady").toString(), json.get("milkReady").toString(), json.get("cupReady").toString(), json.get("thisTimeCoffeeReady").toString(), json.get("isWorking").toString(), json.get("isPowerOn").toString(), json.get("currentWaterVolume").toString(), json.get("currentBeanVolume").toString(), json.get("currentMilkVolume").toString());
@@ -185,6 +196,18 @@ public class CMTwin {
                 '}';
     }
 
+    public String toSystemDeviceString() {
+        return "CoffeeMachine{" +
+                "'waterReady':'" + waterReady + '\'' +
+                ", 'beanReady':'" + beanReady + '\'' +
+                ", 'milkReady':'" + milkReady + '\'' +
+                ", 'cupReady':'" + cupReady + '\'' +
+                ", 'thisTimeCoffeeReady':'" + thisTimeCoffeeReady + '\'' +
+                ", 'isWorking':'" + isWorking + '\'' +
+                ", 'isPowerOn':'" + isPowerOn + '\'' +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -197,4 +220,5 @@ public class CMTwin {
     public int hashCode() {
         return Objects.hash(isWaterReady(), isBeanReady(), isMilkReady(), isCupReady(), isThisTimeCoffeeReady(), isWorking(), isPowerOn(), getCurrentWaterVolume(), getCurrentBeanVolume(), getCurrentMilkVolume());
     }
+
 }

@@ -11,6 +11,30 @@ public class VCController {
     VideoCamera vc;
     VCTwin vcTwin;
 
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public VideoCamera getVc() {
+        return vc;
+    }
+
+    public void setVc(VideoCamera vc) {
+        this.vc = vc;
+    }
+
+    public VCTwin getVcTwin() {
+        return vcTwin;
+    }
+
+    public void setVcTwin(VCTwin vcTwin) {
+        this.vcTwin = vcTwin;
+    }
+
     public VCController(String deviceId, VideoCamera vc, VCTwin vcTwin) {
         this.deviceId = deviceId;
         this.vc = vc;

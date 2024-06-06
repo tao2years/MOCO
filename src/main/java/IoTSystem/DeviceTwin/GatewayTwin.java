@@ -77,6 +77,23 @@ public class GatewayTwin {
                 "}";
     }
 
+    public void setTargetState(String input) {
+        JSONObject json = JSON.parseObject(input.replace("Gateway", ""));
+        this.lightOn = Boolean.parseBoolean(json.get("lightOn").toString());
+        this.alarmOn = Boolean.parseBoolean(json.get("alarmOn").toString());
+        this.lightBrightness = Integer.parseInt(json.get("lightBrightness").toString());
+    }
+
+    public String toSystemDeviceString() {
+        boolean brightnessInRange = lightBrightness > 0 && lightBrightness <= 100;
+        return "Gateway{" +
+                "'lightOn':" + lightOn +
+                ", 'lightBrightness':" +  brightnessInRange +
+                ", 'alarmOn':" + alarmOn +
+                ", 'deviceList':" + deviceList +
+                "}";
+    }
+
     public static GatewayTwin fromString(String state) {
         JSONObject json = JSON.parseObject(state.replace("GatewayTwin", ""));
         return new GatewayTwin(json.getBoolean("lightOn"), json.getInteger("lightBrightness"), json.getBoolean("alarmOn"), json.getInteger("deviceList"));

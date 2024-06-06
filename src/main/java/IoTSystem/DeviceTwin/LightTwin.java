@@ -75,6 +75,22 @@ public class LightTwin {
                 "}";
     }
 
+    public void setTargetState(String input) {
+        JSONObject json = JSON.parseObject(input.replace("Yeelight", ""));
+        this.powerOn = json.getBoolean("powerOn");
+    }
+
+    public String toSystemDeviceString() {
+        boolean brightnessInRange = brightness > 0 && brightness <= 100;
+        int rbgInt = rgb[0]+rgb[1]+rgb[2];
+        boolean rgbInRange = rbgInt >= 0;
+        return "Yeelight{" +
+                "'powerOn':" + powerOn +
+                ", 'brightness':" +  brightnessInRange +
+                ", 'rgb':" + rgbInRange +
+                "}";
+    }
+
     @Override
     public String toString() {
         String rgbString = rgb[0]+","+rgb[1]+","+rgb[2];

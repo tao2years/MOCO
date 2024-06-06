@@ -11,6 +11,30 @@ public class WMController {
     WashingMachine wm;
     WMTwin wmTwin;
 
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public WashingMachine getWm() {
+        return wm;
+    }
+
+    public void setWm(WashingMachine wm) {
+        this.wm = wm;
+    }
+
+    public WMTwin getWmTwin() {
+        return wmTwin;
+    }
+
+    public void setWmTwin(WMTwin wmTwin) {
+        this.wmTwin = wmTwin;
+    }
+
     public WMController(String deviceId, WashingMachine wm, WMTwin wmTwin) {
         this.deviceId = deviceId;
         this.wm = wm;
