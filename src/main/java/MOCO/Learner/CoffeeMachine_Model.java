@@ -153,7 +153,6 @@ public class CoffeeMachine_Model {
 
             nodeOrderSet.addAll(nodesSet);
 
-            // 统计节点数量
             int nodeCount = 0;
             for (String node : nodeOrderSet) {
                 String nodeNumber = "S" + nodeCount;
@@ -161,7 +160,6 @@ public class CoffeeMachine_Model {
                 nodeCount++;
             }
 
-            // 输出所有节点的出边和API
             int sumEdge = 0;
             for (String node : nodeNumbers.keySet()) {
                 String nodeNumber = nodeNumbers.get(node);

@@ -181,7 +181,6 @@ public class WashingMachine_Model {
 
         _nodeOrderSet.addAll(nodesSet);
 
-        // 统计节点数量
         int _nodeCount = 0;
         for (String node : _nodeOrderSet) {
             String nodeNumber = "S" + _nodeCount;

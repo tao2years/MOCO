@@ -9,7 +9,6 @@ import graph.Graph;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Set;
 
@@ -239,6 +238,11 @@ public class Main {
         taskScheduler.start();
 
         sendMessage(messageProxy);
+        sendMessage(messageProxy);
+        sendMessage(messageProxy);
+        sendMessage(messageProxy);
+        sendMessage(messageProxy);
+
 
         Message message1 = new Message("CoffeeMachine", "turnOn", new String[]{});
         String currentState = getCurrentStateBasedOnMsg(message1);
