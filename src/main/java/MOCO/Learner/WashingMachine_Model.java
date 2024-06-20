@@ -1,5 +1,6 @@
 package MOCO.Learner;
 
+import MOCO.API;
 import MOCO.Edge;
 import MOCO.Node;
 import VirtualDevice.WashingMachine;
@@ -20,17 +21,17 @@ public class WashingMachine_Model {
         stateTransitions = new HashMap<>();
     }
 
-    private static List<String> getAllPossibleAPIs() {
-        List<String> apis = new ArrayList<>();
-        apis.add("turnOn");
-        apis.add("turnOff");
-        apis.add("openDoor");
-        apis.add("closeDoor");
-        apis.add("fillWater");
-        apis.add("startWashing");
-        apis.add("startRinsing");
-        apis.add("startSpinning");
-        apis.add("stop");
+    private static List<API> getAllPossibleAPIs() {
+        List<API> apis = new ArrayList<>();
+        apis.add(new API("turnOn", true, false));
+        apis.add(new API("turnOff", true, false));
+        apis.add(new API("openDoor", true, false));
+        apis.add(new API("closeDoor", true, false));
+        apis.add(new API("fillWater", false, false));
+        apis.add(new API("startWashing", false, true));
+        apis.add(new API("startRinsing", false, true));
+        apis.add(new API("startSpinning", false, true));
+        apis.add(new API("stop", true, true));
         return apis;
     }
 
@@ -69,15 +70,15 @@ public class WashingMachine_Model {
     }
 
     private static void exploreState(String state, String systemState, Set<Edge> edges){
-        List<String> apis = getAllPossibleAPIs();
+        List<API> apis = getAllPossibleAPIs();
 
-        for (String api : apis) {
+        for (API api : apis) {
             WashingMachine currentDevice = WashingMachine.fromString(state);
-            String nextState = executeApi(api, currentDevice);
+            String nextState = executeApi(api.getName(), currentDevice);
             if (!nextState.equals("skip")){
                 WashingMachine nextWM = WashingMachine.fromString(nextState);
                 String nextSystemState = nextWM.toString();
-                Edge edge = new Edge(systemState, nextSystemState, api);
+                Edge edge = new Edge(systemState, nextSystemState, api.toString());
                 edges.add(edge);
 
                 if (!stateTransitions.containsKey(nextSystemState)) {
@@ -85,7 +86,7 @@ public class WashingMachine_Model {
                     exploreState(nextWM.toString(), nextSystemState, edges);
                 }
 
-                stateTransitions.get(systemState).add(api);
+                stateTransitions.get(systemState).add(api.getName());
 
             }
         }

@@ -1,5 +1,6 @@
 package MOCO.Learner;
 
+import MOCO.API;
 import MOCO.Edge;
 import MOCO.Node;
 import VirtualDevice.Gateway;
@@ -20,15 +21,15 @@ public class Gateway_Model {
         stateTransitions = new HashMap<>();
     }
 
-    private static List<String> getAllPossibleAPIs() {
-        List<String> apis = new ArrayList<>();
-        apis.add("turnLightOn");
-        apis.add("turnLightOff");
-        apis.add("setLightBrightness");
-        apis.add("turnAlarmOn");
-        apis.add("turnAlarmOff");
-        apis.add("addDevice");
-        apis.add("removeDevice");
+    private static List<API> getAllPossibleAPIs() {
+        List<API> apis = new ArrayList<>();
+        apis.add(new API("turnLightOn", true, false));
+        apis.add(new API("turnLightOff", true, false));
+        apis.add(new API("setLightBrightness", true, false));
+        apis.add(new API("turnAlarmOn", true, false));
+        apis.add(new API("turnAlarmOff", true, false));
+        apis.add(new API("addDevice", true, false));
+        apis.add(new API("removeDevice", true, false));
         return apis;
     }
 
@@ -63,15 +64,15 @@ public class Gateway_Model {
     }
 
     private static void exploreState(String state, String systemState, Set<Edge> edges){
-        List<String> apis = getAllPossibleAPIs();
+        List<API> apis = getAllPossibleAPIs();
 
-        for (String api : apis) {
+        for (API api : apis) {
             Gateway currentDevice = Gateway.fromString(state);
-            String nextState = executeApi(api, currentDevice);
+            String nextState = executeApi(api.getName(), currentDevice);
             if (!nextState.equals("skip")){
                 Gateway nextWM = Gateway.fromString(nextState);
                 String nextSystemState = nextWM.toSystemString();
-                Edge edge = new Edge(systemState, nextSystemState, api);
+                Edge edge = new Edge(systemState, nextSystemState, api.toString());
                 edges.add(edge);
 
                 if (!stateTransitions.containsKey(nextSystemState)) {
@@ -79,7 +80,7 @@ public class Gateway_Model {
                     exploreState(nextWM.toString(), nextSystemState, edges);
                 }
 
-                stateTransitions.get(systemState).add(api);
+                stateTransitions.get(systemState).add(api.getName());
 
             }
         }

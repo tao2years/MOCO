@@ -1,5 +1,6 @@
 package MOCO.Learner;
 
+import MOCO.API;
 import MOCO.Edge;
 import MOCO.Node;
 import VirtualDevice.Yeelight;
@@ -20,12 +21,12 @@ public class Yeelight_Model {
         stateTransitions = new HashMap<>();
     }
 
-    private static List<String> getAllPossibleAPIs() {
-        List<String> apis = new ArrayList<>();
-        apis.add("turnOn");
-        apis.add("turnOff");
-        apis.add("setBrightness");
-        apis.add("setRGB");
+    private static List<API> getAllPossibleAPIs() {
+        List<API> apis = new ArrayList<>();
+        apis.add(new API("turnOn", true,false));
+        apis.add(new API("turnOff", true,false));
+        apis.add(new API("setBrightness", true,false));
+        apis.add(new API("setRGB", true,false));
         return apis;
     }
 
@@ -57,15 +58,15 @@ public class Yeelight_Model {
     }
 
     private static void exploreState(String state, String systemState, Set<Edge> edges){
-        List<String> apis = getAllPossibleAPIs();
+        List<API> apis = getAllPossibleAPIs();
 
-        for (String api : apis) {
+        for (API api : apis) {
             Yeelight currentDevice = Yeelight.fromString(state);
-            String nextState = executeApi(api, currentDevice);
+            String nextState = executeApi(api.getName(), currentDevice);
             if (!nextState.equals("skip")){
                 Yeelight nextWM = Yeelight.fromString(nextState);
                 String nextSystemState = nextWM.toSystemString();
-                Edge edge = new Edge(systemState, nextSystemState, api);
+                Edge edge = new Edge(systemState, nextSystemState, api.toString());
                 edges.add(edge);
 
                 if (!stateTransitions.containsKey(nextSystemState)) {
@@ -73,7 +74,7 @@ public class Yeelight_Model {
                     exploreState(nextWM.toString(), nextSystemState, edges);
                 }
 
-                stateTransitions.get(systemState).add(api);
+                stateTransitions.get(systemState).add(api.getName());
 
             }
         }

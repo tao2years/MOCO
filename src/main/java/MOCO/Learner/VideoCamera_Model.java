@@ -1,5 +1,6 @@
 package MOCO.Learner;
 
+import MOCO.API;
 import MOCO.Edge;
 import MOCO.Node;
 import VirtualDevice.VideoCamera;
@@ -20,28 +21,29 @@ public class VideoCamera_Model {
         stateTransitions = new HashMap<>();
     }
 
-    private static List<String> getAllPossibleAPIs() {
-        List<String> apis = new ArrayList<>();
-        apis.add("turnOn");
-        apis.add("turnOff");
-        apis.add("turnOnMotionRecord");
-        apis.add("turnOffMotionRecord");
-        apis.add("turnOnLight");
-        apis.add("turnOffLight");
-        apis.add("turnOnFullColor");
-        apis.add("turnOffFullColor");
-        apis.add("turnOnFlip");
-        apis.add("turnOffFlip");
-        apis.add("turnOnImproveProgram");
-        apis.add("turnOffImproveProgram");
-        apis.add("turnOnWdr");
-        apis.add("turnOffWdr");
-        apis.add("turnOnTrack");
-        apis.add("turnOffTrack");
-        apis.add("turnOffWatermark");
-        apis.add("setMaxClient");
-        apis.add("setNightMode");
-        apis.add("setMiniLevel");
+    private static List<API> getAllPossibleAPIs() {
+        List<API> apis = new ArrayList<>();
+        apis.add(new API("turnOn", true, false));
+        apis.add(new API("turnOff", true, false));
+        apis.add(new API("turnOnMotionRecord", true, false));
+        apis.add(new API("turnOffMotionRecord", true, false));
+        apis.add(new API("turnOnLight", true, false));
+        apis.add(new API("turnOffLight", true, false));
+        apis.add(new API("turnOnFullColor", true, false));
+        apis.add(new API("turnOffFullColor", true, false));
+        apis.add(new API("turnOnFlip", true, false));
+        apis.add(new API("turnOffFlip", true, false));
+        apis.add(new API("turnOnImproveProgram", true, false));
+        apis.add(new API("turnOffImproveProgram", true, false));
+        apis.add(new API("turnOnWdr", true, false));
+        apis.add(new API("turnOffWdr", true, false));
+        apis.add(new API("turnOnTrack", true, false));
+        apis.add(new API("turnOffTrack", true, false));
+        apis.add(new API("turnOffWatermark", true, false));
+        apis.add(new API("setMaxClient", true, false));
+        apis.add(new API("setNightMode", true, false));
+        apis.add(new API("setMiniLevel", true, false));
+
         return apis;
     }
 
@@ -102,15 +104,15 @@ public class VideoCamera_Model {
     }
 
     private static void exploreState(String state, String systemState, Set<Edge> edges){
-        List<String> apis = getAllPossibleAPIs();
+        List<API> apis = getAllPossibleAPIs();
 
-        for (String api : apis) {
+        for (API api : apis) {
             VideoCamera currentDevice = VideoCamera.fromString(state);
-            String nextState = executeApi(api, currentDevice);
+            String nextState = executeApi(api.getName(), currentDevice);
             if (!nextState.equals("skip")){
                 VideoCamera nextWM = VideoCamera.fromString(nextState);
                 String nextSystemState = nextWM.toSystemString();
-                Edge edge = new Edge(systemState, nextSystemState, api);
+                Edge edge = new Edge(systemState, nextSystemState, api.toString());
                 edges.add(edge);
 
                 if (!stateTransitions.containsKey(nextSystemState)) {
@@ -118,7 +120,7 @@ public class VideoCamera_Model {
                     exploreState(nextWM.toString(), nextSystemState, edges);
                 }
 
-                stateTransitions.get(systemState).add(api);
+                stateTransitions.get(systemState).add(api.getName());
 
             }
         }

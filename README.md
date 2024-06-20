@@ -7,7 +7,6 @@ This repository is dedicated to sharing the tool MOCO and the data for the ASE 2
 
 MOCO is a platform-independent tool to maintain the IoT System's runtime consistency.
 
-![Approach Overview](figures\Approach.png)
 
 1. First, MOCO learns device behavior models based
    on the Active Automata Learning (AAL) technique.
@@ -24,7 +23,6 @@ MOCO is a platform-independent tool to maintain the IoT System's runtime consist
 
 The implementation of MOCO involves several key components.
 
-![Implementation](figures\Implementation.png)
 
 ## System Architecture
 
@@ -70,8 +68,24 @@ The **Device Twin** maintains a digital representation of each device, enabling 
 
 ## Getting MOCO to run
 
-Prerequisites:
-...
+Ensure you have the necessary dependencies configured as per the `pom.xml` file. You can use Maven to manage dependencies.
 
-Project structure:
-...
+
+## Running MOCO
+
+To run MOCO, execute the Main.java file. Configuration for messaging can be set in the sendMessage.
+
+To enable or disable MOCO, you can set the proxy on or off in the Main function:
+
+```java
+messageProxy.setProxyOn(true); // Enable MOCO
+messageProxy.setProxyOn(false); // Disable MOCO
+```
+
+In the TaskScheduler class, you can comment invoke methods to enable or disable the postCheck in the ExecutionChecker:
+
+```java
+// ExecutionChecker.postCheck(...); 
+ExecutionChecker.postCheck(...); 
+```
+

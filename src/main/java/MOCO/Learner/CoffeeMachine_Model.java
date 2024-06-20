@@ -1,5 +1,6 @@
 package MOCO.Learner;
 
+import MOCO.API;
 import MOCO.Edge;
 import MOCO.Node;
 import VirtualDevice.CoffeeMachine;
@@ -21,17 +22,18 @@ public class CoffeeMachine_Model {
         stateTransitions = new HashMap<>();
     }
 
-    private static List<String> getAllPossibleAPIs() {
-        List<String> apis = new ArrayList<>();
-        apis.add("turnOn");
-//        apis.add("turnOff");
-        apis.add("addWater");
-        apis.add("addCoffeeBean");
-        apis.add("addMilk");
-        apis.add("placeCup");
-        apis.add("fetchCoffee");
+    private static List<API> getAllPossibleAPIs() {
+        List<API> apis = new ArrayList<>();
+        apis.add(new API("turnOn", true, false));
+        apis.add(new API("turnOff", true, false));
+        apis.add(new API("addWater", false, false));
+        apis.add(new API("addCoffeeBean", false, false));
+        apis.add(new API("addMilk", false, false));
+        apis.add(new API("placeCup", true, true));
+        apis.add(new API("fetchCoffee", true, true));
         for (int i = 1; i <= 3; i++) {
-            apis.add("brewCoffee_" + i);
+            String apiName = "brewCoffee_" + i;
+            apis.add(new API(apiName, false, false));
         }
 
         return apis;
@@ -41,6 +43,8 @@ public class CoffeeMachine_Model {
         switch (api) {
             case "turnOn":
                 return device.turnOn().equals("success") ? device.toString() : "skip";
+            case "turnOff":
+                return device.turnOff().equals("success") ? device.toString() : "skip";
             case "addWater":
                 return device.addWater().equals("success") ? device.toString() : "skip";
             case "addCoffeeBean":
@@ -72,14 +76,14 @@ public class CoffeeMachine_Model {
     }
 
     private static void exploreState(String state, String systemState, Set<Edge> edges) {
-        List<String> apis = getAllPossibleAPIs();
-        for (String api : apis) {
+        List<API> apis = getAllPossibleAPIs();
+        for (API api : apis) {
             CoffeeMachine currentCM = CoffeeMachine.fromString(state);
-            String nextState = executeApi(api, currentCM);
+            String nextState = executeApi(api.getName(), currentCM);
             if (!nextState.equals("skip")){
                 CoffeeMachine nextCM = CoffeeMachine.fromString(nextState);
                 String nextSystemState = nextCM.toSystemStateString();
-                Edge edge = new Edge(systemState, nextSystemState, api);
+                Edge edge = new Edge(systemState, nextSystemState, api.toString());
                 edges.add(edge);
 
                 int temp = 0;
@@ -92,10 +96,10 @@ public class CoffeeMachine_Model {
                         break;
                     }else {
                         String source = nextSystemState;
-                        String _nextState = executeApi(api, nextCM);
+                        String _nextState = executeApi(api.getName(), nextCM);
                         nextCM = CoffeeMachine.fromString(_nextState);
                         String target = nextCM.toSystemStateString();
-                        Edge _edge = new Edge(source, target, api);
+                        Edge _edge = new Edge(source, target, api.toString());
                         edges.add(_edge);
                         temp++;
                         if (temp>MAX_MODE) {
@@ -110,7 +114,7 @@ public class CoffeeMachine_Model {
                     exploreState(nextCM.toString(), nextSystemState, edges);
                 }
 
-                stateTransitions.get(systemState).add(api);
+                stateTransitions.get(systemState).add(api.getName());
             }
         }
     }
