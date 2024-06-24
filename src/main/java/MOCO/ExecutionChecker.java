@@ -30,18 +30,18 @@ public class ExecutionChecker {
         }
         String deviceType = message.getDeviceType();
 //        LOGGER.info(currentState);
-//        LOGGER.info(cm_outEdgeApis.keySet());
+//        LOGGER.info(light_outEdgeApis.keySet());
         switch (deviceType) {
             case "CoffeeMachine":
-                return cm_outEdgeApis.get(currentState).contains(message.getDeviceAPI());
+                return cm_outEdgeApis.get(currentState).toString().contains(message.getDeviceAPI());
             case "Gateway":
-                return gateway_outEdgeApis.get(currentState).contains(message.getDeviceAPI());
+                return gateway_outEdgeApis.get(currentState).toString().contains(message.getDeviceAPI());
             case "Yeelight":
-                return light_outEdgeApis.get(currentState).contains(message.getDeviceAPI());
+                return light_outEdgeApis.get(currentState).toString().contains(message.getDeviceAPI());
             case "VideoCamera":
-                return vc_outEdgeApis.get(currentState).contains(message.getDeviceAPI());
+                return vc_outEdgeApis.get(currentState).toString().contains(message.getDeviceAPI());
             case "WashingMachine":
-                return wm_outEdgeApis.get(currentState).contains(message.getDeviceAPI());
+                return wm_outEdgeApis.get(currentState).toString().contains(message.getDeviceAPI());
             default:
                 return false;
         }

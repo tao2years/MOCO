@@ -34,15 +34,19 @@ public class MessageProxy {
         this.proxyOn = proxyOn;
     }
 
-    public void addMessage (Message message, String currentState) {
+    public boolean addMessage (Message message, String currentState) {
         if (proxyOn) {
             if (ExecutionChecker.preCheck(message, currentState, gateway_outEdgeApis, light_outEdgeApis, cm_outEdgeApis, vc_outEdgeApis, wm_outEdgeApis)){
                 taskScheduler.addMessage(message);
+                return true;
             }else{
                 LOGGER.info("Current Msg can not be executed at the current state. " + message);
+                LOGGER.info("Current state: " + currentState);
+                return false;
             }
         }else {
             taskScheduler.addMessage(message);
+            return true;
         }
     }
 }

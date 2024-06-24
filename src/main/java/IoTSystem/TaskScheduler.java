@@ -176,9 +176,9 @@ public class TaskScheduler {
     public void shutdown() {
         executor.shutdown();
         try {
-            if (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
+            if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
                 executor.shutdownNow();
-                if (!executor.awaitTermination(10, TimeUnit.SECONDS)) {
+                if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
                     System.err.println("Executor did not terminate");
                 }
             }
