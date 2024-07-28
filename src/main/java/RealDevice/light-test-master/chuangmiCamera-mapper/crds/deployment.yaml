@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: chuangmicamera-controller
+  name: chuangmicamera-controller-deployment
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      k8s-app: chuangmicamera-controller
+  template:
+    metadata:
+      labels:
+        k8s-app: chuangmicamera-controller
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      hostNetwork: true
+      containers:
+      - name: chuangmicamera-controller-container
+        image: mistyfalcon/chuangmicamera-controller:v1.0.0
+        imagePullPolicy: IfNotPresent
+      nodeSelector:
+        node-role.kubernetes.io/edge: ""
+      restartPolicy: Always

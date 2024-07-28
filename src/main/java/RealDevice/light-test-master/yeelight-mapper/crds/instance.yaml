@@ -1,0 +1,65 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: Device
+metadata:
+  name: yeelight
+  labels:
+    description: 'yeelight'
+spec:
+  deviceModelRef:
+    name: yeelight-model
+  nodeSelector:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key: ''
+        operator: In
+        values:
+        - worker01
+
+status:
+  twins:
+    - propertyName: power
+      desired:
+        metadata:
+          type: string
+        value: 'OFF'
+      reported:
+        metadata:
+          type: string
+        value: 'OFF'
+    - propertyName: brightness
+      desired:
+        metadata:
+          type: string
+        value: '50'
+      reported:
+        metadata:
+          type: string
+        value: '50'
+    - propertyName: red
+      desired:
+        metadata:
+          type: string
+        value: '255'
+      reported:
+        metadata:
+          type: string
+        value: '255'
+    - propertyName: green
+      desired:
+        metadata:
+          type: string
+        value: '255'
+      reported:
+        metadata:
+          type: string
+        value: '255'
+    - propertyName: blue
+      desired:
+        metadata:
+          type: string
+        value: '255'
+      reported:
+        metadata:
+          type: string
+        value: '255'
+        

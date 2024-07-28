@@ -1,0 +1,37 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: DeviceModel
+metadata:
+ name: yeelight-model
+ namespace: default
+spec:
+ properties:
+  - name: power
+    description: yeelight power
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: 'OFF'
+  - name: brightness
+    description: yeelight brightness
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: '0'
+  - name: red
+    description: RGB red
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: '255'
+  - name: green
+    description: RGB green
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: '255'
+  - name: blue
+    description: RGB blue
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: '255'

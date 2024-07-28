@@ -1,0 +1,37 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: DeviceModel
+metadata:
+ name: chuangmicamera-model
+ namespace: default
+spec:
+ properties:
+  - name: power
+    description: chuangmicamera power
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: 'OFF'
+  - name: flip
+    description: chuangmicamera flip
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: 'OFF'
+  - name: light
+    description: chuangmicamera light
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: 'OFF'
+  - name: nightmode
+    description: chuangmicamera nightmode
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: '0'
+  - name: watermark
+    description: chuangmicamera watermark
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: 'OFF'                      

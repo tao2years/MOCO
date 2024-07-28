@@ -1,0 +1,64 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: Device
+metadata:
+  name: chuangmicamera
+  labels:
+    description: 'chuangmicamera'
+spec:
+  deviceModelRef:
+    name: chuangmicamera-model
+  nodeSelector:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key: ''
+        operator: In
+        values:
+        - worker01
+
+status:
+  twins:
+    - propertyName: power
+      desired:
+        metadata:
+          type: string
+        value: 'OFF'
+      reported:
+        metadata:
+          type: string
+        value: 'OFF'
+    - propertyName: flip
+      desired:
+        metadata:
+          type: string
+        value: 'OFF'
+      reported:
+        metadata:
+          type: string
+        value: 'OFF'    
+    - propertyName: light
+      desired:
+        metadata:
+          type: string
+        value: 'OFF'
+      reported:
+        metadata:
+          type: string
+        value: 'OFF'    
+    - propertyName: nightmode
+      desired:
+        metadata:
+          type: string
+        value: '0'
+      reported:
+        metadata:
+          type: string
+        value: '0'    
+    - propertyName: watermark
+      desired:
+        metadata:
+          type: string
+        value: 'OFF'
+      reported:
+        metadata:
+          type: string
+        value: 'OFF'    

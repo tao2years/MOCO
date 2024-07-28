@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: gateway-controller
+  name: gateway-controller-deployment
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      k8s-app: gateway-controller
+  template:
+    metadata:
+      labels:
+        k8s-app: gateway-controller
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/master: ""
+      hostNetwork: true
+      containers:
+      - name: gateway-controller-container
+        image: mistyfalcon/gateway-controller:v1.0.0
+        imagePullPolicy: IfNotPresent
+      nodeSelector:
+        node-role.kubernetes.io/edge: ""
+      restartPolicy: Always

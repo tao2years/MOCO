@@ -1,0 +1,19 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: DeviceModel
+metadata:
+ name: gateway-model
+ namespace: default
+spec:
+ properties:
+  - name: power
+    description: alarm power
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: 'OFF'
+  - name: brightness
+    description: night light brightness
+    type:
+      string:
+        accessMode: ReadWrite
+        defaultValue: '0'

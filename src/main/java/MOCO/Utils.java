@@ -145,6 +145,31 @@ public class Utils {
         }
     }
 
+    public static String executePythonScript(ProcessBuilder pb, String scriptPath, String... args) throws IOException, InterruptedException {
+        List<String> command = new ArrayList<>();
+        command.add("python");
+        command.add(scriptPath);
+        command.addAll(Arrays.asList(args));
+
+        pb.command(command.toArray(new String[0]));
+//        LOGGER.info(pb.environment());
+
+        Process process = pb.start();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+        StringBuilder result = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            result.append(line).append("\n");
+        }
+        reader.close();
+        process.waitFor();
+        int exitCode = process.exitValue();
+        if (exitCode != 0) {
+            return "Error";
+        }
+        return result.toString();
+    }
+
     public static void main(String[] args) {
         String fileName = "src/main/java/MOCO/modelFiles/yeelight.json";
         Utils utils = new Utils();
