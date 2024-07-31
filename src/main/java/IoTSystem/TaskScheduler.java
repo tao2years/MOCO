@@ -156,7 +156,7 @@ public class TaskScheduler {
                 e.printStackTrace();
             } finally {
                 LOGGER.info("[Done] " + methodName);
-//                ExecutionChecker.postCheck(methodName, currentState, controller, delayedQueue, message);
+                ExecutionChecker.postCheck(methodName, currentState, controller, delayedQueue, message);
                 latch.countDown();
             }
         }).start();

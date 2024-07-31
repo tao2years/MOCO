@@ -1,6 +1,7 @@
 from miio.integrations.yeelight.light.yeelight import Yeelight
 import sys
 # miiocli device --ip 192.168.3.109 --token d3ba6e7595569e5a3e40697f07d7fdf6 info
+import json
 
 dev = Yeelight("192.168.3.109", "d3ba6e7595569e5a3e40697f07d7fdf6")
 

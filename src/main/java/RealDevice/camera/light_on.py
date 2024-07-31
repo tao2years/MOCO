@@ -1,7 +1,7 @@
 from miio.integrations.chuangmi.camera.chuangmi_camera import ChuangmiCamera
 import json
 
-camera = ChuangmiCamera("192.168.3.113", "694859656c476d7543775439704a434d")
+camera = ChuangmiCamera("192.168.3.113", "3056304e425542707471336d635a4672")
 
 camera.light_on()
 status = camera.status()

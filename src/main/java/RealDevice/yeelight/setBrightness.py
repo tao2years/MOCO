@@ -1,5 +1,6 @@
 import sys
 from miio.integrations.yeelight.light.yeelight import Yeelight
+import json
 
 if len(sys.argv) != 2:
     print("Usage: python setBrightness.py <brightness>")
