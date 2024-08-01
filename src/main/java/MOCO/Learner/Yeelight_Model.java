@@ -81,7 +81,7 @@ public class Yeelight_Model {
     }
 
     public static void main(String[] args) {
-        long startTime = System.nanoTime(); // 获取开始时间
+        long startTime = System.nanoTime();
         Graph<Object, Object> userGraph = new Graph<>(true,true,false);
         Set<Edge> edges = new HashSet<>();
         int[] sizeHistory = new int[20];
