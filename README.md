@@ -1,91 +1,78 @@
-# MOCO
-Match Word with Deed: Maintaining Consistency for IoT Systems with Behavior Models
+# MOCA
+Maintain Runtime Consistency for IoT Systems Based on Device Behavior Models
 
-This repository is dedicated to sharing the tool MOCO and the data for the ASE 2024 paper entitled Match Word with Deed: Maintaining Consistency for IoT Systems with Behavior Models.
+This repository hosts the tool MOCA and associated data for the paper "Maintain Runtime Consistency for IoT Systems Based on Device Behavior Models."
 
-## METHODOLOGY
+## Methodology
 
-MOCO is a platform-independent tool to maintain the IoT System's runtime consistency.
+MOCA is a platform-independent tool designed to maintain runtime consistency in IoT systems.
 
-
-1. First, MOCO learns device behavior models based
-   on the Active Automata Learning (AAL) technique.
-
-2. At runtime, MOCO monitors system operations and checks the feasibility of executing a command in the current state based on the previously learned behavior model.
-
-3. After executing the command, MOCO checks both the post-execution states of the physical device and digital space against the theoretical
-   states specified by the behavior model.
-
-4. Upon detecting inconsistencies, MOCO employs appropriate actions to resolve the issue.
-
+1. **Learning Device Behavior Models**: MOCA uses Active Automata Learning (AAL) to construct behavior models of IoT devices.
+2. **Runtime Monitoring**: MOCA monitors system operations, checking the feasibility of executing commands based on the learned behavior models.
+3. **Post-execution Verification**: After executing a command, MOCA verifies the post-execution states of both the physical device and its digital representation against the theoretical states specified by the behavior model.
+4. **Inconsistency Resolution**: Upon detecting inconsistencies, MOCA employs appropriate actions to resolve the issues and restore consistency.
 
 ## Implementation
 
-The implementation of MOCO involves several key components.
-
+The implementation of MOCA involves several key components:
 
 ## System Architecture
 
-\toolname lies between the application and the IoT system, providing a runtime consistency assurance framework for IoT systems. The following are the key components of \toolname:
+MOCA operates between the application and the IoT system, providing a runtime consistency assurance framework. The key components of MOCA are:
 
 ### Learner
 
-The **Learner** interacts with IoT devices to generate precise behavior models, which are essential for understanding how devices should function under various conditions. These models form the basis for detecting and resolving inconsistencies.
+The **Learner** interacts with IoT devices to generate precise behavior models, which are essential for understanding device functionality under various conditions. These models form the basis for detecting and resolving inconsistencies.
 
 ### Concurrent Handler
 
-The **Concurrent Handler** manages concurrent requests from applications by sequencing these requests and forwarding them to the **Pre-execution Checker**.
+The **Concurrent Handler** manages concurrent requests from applications, sequencing them and forwarding them to the **Pre-execution Checker**.
 
 ### Pre-execution Checker
 
-The **Pre-execution Checker** performs a pre-check to verify the legality of the current instruction.
+The **Pre-execution Checker** verifies the legality of the current instruction before execution.
 
 ### Execution Monitor
 
-The **Execution Monitor** ensures the execution of the request, with some exception-handling mechanisms.
+The **Execution Monitor** ensures the execution of requests and handles exceptions.
 
 ### Post-execution Checker
 
-The **Post-execution Checker** performs a post-check to identify any inconsistencies. If an inconsistency is detected, it creates a resolution, which is then communicated to the **IoT System**. This ensures that any detected deviations are addressed promptly to maintain system consistency.
+The **Post-execution Checker** identifies any inconsistencies after command execution. If an inconsistency is detected, it generates a resolution and communicates it to the **IoT System** to maintain system consistency.
 
 ## IoT System Components
 
-The **IoT System** itself comprises several modules including the **Task Scheduler**, **Device Controller**, and **Device Twin** components.
+The **IoT System** comprises several modules, including the **Task Scheduler**, **Device Controller**, and **Device Twin**.
 
 ### Task Scheduler
 
-The **Task Scheduler** is responsible for receiving commands from \toolname and forwarding them to the corresponding device controllers.
+The **Task Scheduler** receives commands from MOCA and forwards them to the corresponding device controllers.
 
 ### Device Controller
 
-The **Device Controller** interacts directly with physical IoT devices such as Yeelight and Gateway, updating their digital states accordingly.
+The **Device Controller** interacts directly with physical IoT devices, such as Yeelight and Gateway, updating their digital states accordingly.
 
 ### Device Twin
 
 The **Device Twin** maintains a digital representation of each device, enabling virtual interaction and monitoring.
 
-
-
-## Getting MOCO to run
+## Getting MOCA to Run
 
 Ensure you have the necessary dependencies configured as per the `pom.xml` file. You can use Maven to manage dependencies.
 
+## Running MOCA
 
-## Running MOCO
+To run MOCA, execute the `Main.java` file. Configuration for messaging can be set in the `sendMessage`.
 
-To run MOCO, execute the Main.java file. Configuration for messaging can be set in the sendMessage.
+To enable or disable MOCA, set the proxy on or off in the Main function:
 
-To enable or disable MOCO, you can set the proxy on or off in the Main function:
-
-```java
-messageProxy.setProxyOn(true); // Enable MOCO
-messageProxy.setProxyOn(false); // Disable MOCO
+```
+messageProxy.setProxyOn(true); // Enable MOCA
+messageProxy.setProxyOn(false); // Disable MOCA
 ```
 
-In the TaskScheduler class, you can comment invoke methods to enable or disable the postCheck in the ExecutionChecker:
-
-```java
+In the TaskScheduler class, you can comment or uncomment the invoke methods to enable or disable the post-check in the ExecutionChecker:
+```
 // ExecutionChecker.postCheck(...); 
 ExecutionChecker.postCheck(...); 
 ```
-
