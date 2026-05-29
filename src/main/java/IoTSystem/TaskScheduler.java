@@ -7,10 +7,7 @@ import VirtualDevice.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.concurrent.*;
 
 public class TaskScheduler {
@@ -23,6 +20,7 @@ public class TaskScheduler {
     private LightController lightController;
     private VCController vcController;
     private WMController wmController;
+    private DeviceDispatchSupport deviceDispatchSupport;
 
     public TaskScheduler(int threadPoolSize, CMController cmController) {
         if (threadPoolSize == 0) {
@@ -33,6 +31,7 @@ public class TaskScheduler {
         this.messageQueue = new MessageQueue();
         this.cmController = cmController;
         this.delayedQueue = new DelayQueue<>();
+        this.deviceDispatchSupport = new DeviceDispatchSupport(cmController, null, null, null, null);
     }
 
     public TaskScheduler(int threadPoolSize, CMController cmController, GatewayController gatewayController, LightController lightController, VCController vcController, WMController wmController) {
@@ -48,6 +47,7 @@ public class TaskScheduler {
         this.lightController = lightController;
         this.vcController = vcController;
         this.wmController = wmController;
+        this.deviceDispatchSupport = new DeviceDispatchSupport(cmController, gatewayController, lightController, vcController, wmController);
     }
 
     public void addMessage(Message message) {
@@ -89,47 +89,15 @@ public class TaskScheduler {
                 LOGGER.info("[Handling...]" + message);
                 String deviceType = message.getDeviceType();
                 String api = message.getDeviceAPI();
-                String[] args = message.getDeviceAPIArgs();
-                // Dispatch the message to the appropriate controller
-                if (args == null) {
-                    args = new String[0];
+                InvocationArguments invocationArguments = parseInvocationArguments(message.getDeviceAPIArgs());
+                Object controller = deviceDispatchSupport.getController(deviceType);
+                if (controller == null) {
+                    LOGGER.error("Device type not found: " + deviceType);
+                    return;
                 }
-                Class<?>[] argTypes = new Class[args.length];
-                Object[] parsedArgs = new Object[args.length];
-                for (int i = 0; i < args.length; i++) {
-                    parsedArgs[i] = parseArg(args[i]);
-                    argTypes[i] = getPrimitiveType(parsedArgs[i].getClass());
-                }
-                switch (deviceType) {
-                    case "CoffeeMachine":
-                        String state = cmController.getCmTwin().toSystemStateString().replace("CMTwin","CoffeeMachine");
-                        invokeMethod(cmController, api, argTypes, parsedArgs, state, message);
-                        cmController.printInternalState();
-                        break;
-                    case "Gateway":
-                        state = gatewayController.getGatewayTwin().toSystemString().replace("GatewayTwin","Gateway");
-                        invokeMethod(gatewayController, api, argTypes, parsedArgs, state, message);
-                        gatewayController.printInternalState();
-                        break;
-                    case "Yeelight":
-                        state = lightController.getLightTwin().toSystemString().replace("LightTwin","Yeelight");
-                        invokeMethod(lightController, api, argTypes, parsedArgs, state, message);
-                        lightController.printInternalState();
-                        break;
-                    case "VideoCamera":
-                        state = vcController.getVcTwin().toSystemString().replace("VCTwin","VideoCamera");
-                        invokeMethod(vcController, api, argTypes, parsedArgs, state, message);
-                        vcController.printInternalState();
-                        break;
-                    case "WashingMachine":
-                        state = wmController.getWmTwin().toString().replace("WMTwin","WashingMachine");
-                        invokeMethod(wmController, api, argTypes, parsedArgs, state, message);
-                        wmController.printInternalState();
-                        break;
-                    default:
-                        LOGGER.error("Device type not found: " + deviceType);
-                }
-
+                String state = deviceDispatchSupport.getPreExecutionState(deviceType);
+                invokeMethod(controller, api, invocationArguments.argTypes, invocationArguments.args, state, message);
+                deviceDispatchSupport.printInternalState(deviceType);
             } catch (NoSuchMethodException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -162,6 +130,29 @@ public class TaskScheduler {
         }).start();
 
 //        latch.await();
+    }
+
+    private InvocationArguments parseInvocationArguments(String[] args) {
+        if (args == null) {
+            args = new String[0];
+        }
+        Class<?>[] argTypes = new Class[args.length];
+        Object[] parsedArgs = new Object[args.length];
+        for (int i = 0; i < args.length; i++) {
+            parsedArgs[i] = parseArg(args[i]);
+            argTypes[i] = getPrimitiveType(parsedArgs[i].getClass());
+        }
+        return new InvocationArguments(argTypes, parsedArgs);
+    }
+
+    private static class InvocationArguments {
+        private final Class<?>[] argTypes;
+        private final Object[] args;
+
+        private InvocationArguments(Class<?>[] argTypes, Object[] args) {
+            this.argTypes = argTypes;
+            this.args = args;
+        }
     }
 
     private Object parseArg(String arg) {

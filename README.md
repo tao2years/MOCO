@@ -60,6 +60,12 @@ The **Device Twin** maintains a digital representation of each device, enabling 
 
 Ensure you have the necessary dependencies configured as per the `pom.xml` file. You can use Maven to manage dependencies.
 
+To run the unit tests, execute:
+
+```
+mvn test
+```
+
 ## Running MOCA
 
 To run MOCA, execute the `Main.java` file. Configuration for messaging can be set in the `sendMessage`.

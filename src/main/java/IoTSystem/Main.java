@@ -8,21 +8,15 @@ import VirtualDevice.*;
 import graph.Graph;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Map;
-import java.util.Set;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.hardware.HWDiskStore;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-
-import static IoTSystem.TaskScheduler.sleep;
 
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger();
@@ -50,6 +44,7 @@ public class Main {
 
     // TaskScheduler
     private static TaskScheduler taskScheduler;
+    private static DeviceDispatchSupport deviceDispatchSupport;
 
     // device behavior models
     private static String gatewayFile = "src/main/java/MOCO/modelFiles/gateway.json";
@@ -91,6 +86,7 @@ public class Main {
         wmTwin = new WMTwin();
         wmController = new WMController("wm001", wm, wmTwin);
 
+        deviceDispatchSupport = new DeviceDispatchSupport(cmController, transGatewayController, lightController, vcController, wmController);
         taskScheduler = new TaskScheduler(5, cmController, transGatewayController, lightController, vcController, wmController);
     }
 
@@ -108,21 +104,7 @@ public class Main {
     }
 
     public static String getCurrentStateBasedOnMsg (Message message){
-        String deviceType =  message.getDeviceType();
-        switch (deviceType) {
-            case "CoffeeMachine":
-                return cmTwin.toSystemDeviceString();
-            case "Gateway":
-                return gatewayTwin.toSystemDeviceString();
-            case "Yeelight":
-                return lightTwin.toSystemDeviceString();
-            case "VideoCamera":
-                return vcTwin.toSystemDeviceString();
-            case "WashingMachine":
-                return wmTwin.toDeviceString();
-            default:
-                return "Invalid";
-        }
+        return deviceDispatchSupport.getCurrentState(message.getDeviceType());
     }
 
 

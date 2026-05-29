@@ -56,109 +56,121 @@ public class ExecutionChecker {
                                        DelayQueue<DelayedMessage> delayedQueue, Message message){
         switch (controllerName){
             case "CMController":
-                String currentState = ((CMController) controller).getCmTwin().toSystemDeviceString();
+                CMController cmController = (CMController) controller;
                 String targetState = getTargetStateBasedOnBehaviourModels(preState, api, cm_behaviorGraph);
-                if (!currentState.equals(targetState) && !targetState.equals("null")){
-                    LOGGER.error("Digital Deviation Detected");
-                    ((CMController) controller).getCmTwin().setTargetState(targetState);
-                }
-                // Check physical deviation
-                String currentPhysicalState = ((CMController) controller).getCoffeeMachine().toSystemStateString();
-                currentPhysicalState = "CoffeeMachine{'waterReady':'true', 'beanReady':'false', 'milkReady':'false', 'cupReady':'true', 'thisTimeCoffeeReady':'false', 'isWorking':'false', 'isPowerOn':'true'}";
-                if (!currentPhysicalState.equals(targetState) && !targetState.equals("null")){
-                    LOGGER.error("Physical Deviation Detected");
-                    if (currentPhysicalState.equals(preState)){
-                        delayedQueue.offer(new DelayedMessage(message, 100));
-                    }else {
-                        List<String> actionLists = calculateSolutions(cm_behaviorGraph, currentPhysicalState, targetState, message);
-                        generateCMActions(actionLists, ((CMController) controller), delayedQueue);
-                        LOGGER.info("Action List: " + actionLists);
+                checkDigitalDeviation(cmController.getCmTwin().toSystemDeviceString(), targetState, new TargetStateSetter() {
+                    @Override
+                    public void setTargetState(String targetState) {
+                        cmController.getCmTwin().setTargetState(targetState);
                     }
-                }
+                });
+                String currentPhysicalState = cmController.getCoffeeMachine().toSystemStateString();
+                currentPhysicalState = "CoffeeMachine{'waterReady':'true', 'beanReady':'false', 'milkReady':'false', 'cupReady':'true', 'thisTimeCoffeeReady':'false', 'isWorking':'false', 'isPowerOn':'true'}";
+                checkPhysicalDeviation(currentPhysicalState, preState, targetState, cm_behaviorGraph, message, delayedQueue, new RecoveryActionGenerator() {
+                    @Override
+                    public void generate(List<String> actionLists) {
+                        generateCMActions(actionLists, cmController, delayedQueue);
+                    }
+                });
                 break;
             case "GatewayController":
-                String currentState_gateway = ((GatewayController) controller).getGatewayTwin().toSystemDeviceString();
-                String targetState_gateway = getTargetStateBasedOnBehaviourModels(preState, api, gateway_behaviorGraph);
-                if (!currentState_gateway.equals(targetState_gateway) && !targetState_gateway.equals("null")){
-                    LOGGER.error("Digital Deviation Detected");
-                    ((GatewayController) controller).getGatewayTwin().setTargetState(targetState_gateway);
-                }
-                // Check physical deviation
-                String currentGateway = ((GatewayController) controller).getGateway().toSystemString();
-                if (!currentGateway.equals(targetState_gateway) && !targetState_gateway.equals("null")){
-                    LOGGER.error("Physical Deviation Detected");
-                    if (currentGateway.equals(preState)){
-                        delayedQueue.offer(new DelayedMessage(message, 100));
-                    }else {
-                        List<String> actionLists = calculateSolutions(cm_behaviorGraph, currentGateway, targetState_gateway, message);
-                        generateGWActions(actionLists, ((GatewayController) controller), delayedQueue);
-                        LOGGER.info("Action List: " + actionLists);
+                GatewayController gatewayController = (GatewayController) controller;
+                String targetStateGateway = getTargetStateBasedOnBehaviourModels(preState, api, gateway_behaviorGraph);
+                checkDigitalDeviation(gatewayController.getGatewayTwin().toSystemDeviceString(), targetStateGateway, new TargetStateSetter() {
+                    @Override
+                    public void setTargetState(String targetState) {
+                        gatewayController.getGatewayTwin().setTargetState(targetState);
                     }
-                }
+                });
+                checkPhysicalDeviation(gatewayController.getGateway().toSystemString(), preState, targetStateGateway, cm_behaviorGraph, message, delayedQueue, new RecoveryActionGenerator() {
+                    @Override
+                    public void generate(List<String> actionLists) {
+                        generateGWActions(actionLists, gatewayController, delayedQueue);
+                    }
+                });
                 break;
             case "LightController":
-                String current_light = ((LightController) controller).getLightTwin().toSystemString();
-                String target_light = getTargetStateBasedOnBehaviourModels(preState, api, light_behaviorGraph);
-                if (!current_light.equals(target_light) && !target_light.equals("null")){
-                    LOGGER.error("Digital Deviation Detected");
-                    ((LightController) controller).getLightTwin().setTargetState(target_light);
-                }
-                // Check physical deviation
-                String currentLight = ((LightController) controller).getYeelight().toSystemString();
-                if (!currentLight.equals(target_light) && !target_light.equals("null")){
-                    LOGGER.error("Physical Deviation Detected");
-                    if (currentLight.equals(preState)){
-                        delayedQueue.offer(new DelayedMessage(message, 100));
-                    }else {
-                        List<String> actionLists = calculateSolutions(cm_behaviorGraph, currentLight, target_light, message);
-                        generateLightActions(actionLists, ((LightController) controller), delayedQueue);
-                        LOGGER.info("Action List: " + actionLists);
+                LightController lightController = (LightController) controller;
+                String targetStateLight = getTargetStateBasedOnBehaviourModels(preState, api, light_behaviorGraph);
+                checkDigitalDeviation(lightController.getLightTwin().toSystemString(), targetStateLight, new TargetStateSetter() {
+                    @Override
+                    public void setTargetState(String targetState) {
+                        lightController.getLightTwin().setTargetState(targetState);
                     }
-                }
+                });
+                checkPhysicalDeviation(lightController.getYeelight().toSystemString(), preState, targetStateLight, cm_behaviorGraph, message, delayedQueue, new RecoveryActionGenerator() {
+                    @Override
+                    public void generate(List<String> actionLists) {
+                        generateLightActions(actionLists, lightController, delayedQueue);
+                    }
+                });
                 break;
             case "VCController":
-                String current_vc = ((VCController) controller).getVcTwin().toSystemDeviceString();
-                String target_vc = getTargetStateBasedOnBehaviourModels(preState, api, vc_behaviorGraph);
-                if (!current_vc.equals(target_vc) && !target_vc.equals("null")){
-                    LOGGER.error("Digital Deviation Detected");
-                    ((VCController) controller).getVcTwin().setTargetState(target_vc);
-                }
-                // Check physical deviation
-                String currentVideoCamera = ((VCController) controller).getVc().toSystemString();
-                if (!currentVideoCamera.equals(target_vc) && !target_vc.equals("null")){
-                    LOGGER.error("Physical Deviation Detected");
-                    if (currentVideoCamera.equals(preState)){
-                        delayedQueue.offer(new DelayedMessage(message, 100));
-                    }else {
-                        List<String> actionLists = calculateSolutions(cm_behaviorGraph, currentVideoCamera, target_vc, message);
-                        generateVCActions(actionLists, ((VCController) controller), delayedQueue);
-                        LOGGER.info("Action List: " + actionLists);
+                VCController vcController = (VCController) controller;
+                String targetStateVc = getTargetStateBasedOnBehaviourModels(preState, api, vc_behaviorGraph);
+                checkDigitalDeviation(vcController.getVcTwin().toSystemDeviceString(), targetStateVc, new TargetStateSetter() {
+                    @Override
+                    public void setTargetState(String targetState) {
+                        vcController.getVcTwin().setTargetState(targetState);
                     }
-                }
+                });
+                checkPhysicalDeviation(vcController.getVc().toSystemString(), preState, targetStateVc, cm_behaviorGraph, message, delayedQueue, new RecoveryActionGenerator() {
+                    @Override
+                    public void generate(List<String> actionLists) {
+                        generateVCActions(actionLists, vcController, delayedQueue);
+                    }
+                });
                 break;
             case "WMController":
-                String current_wm = ((WMController) controller).getWmTwin().toDeviceString();
-                String target_wm = getTargetStateBasedOnBehaviourModels(preState, api, wm_behaviorGraph);
-                if (!current_wm.equals(target_wm) && !target_wm.equals("null")){
-                    LOGGER.error("Digital Deviation Detected");
-                    ((WMController) controller).getWmTwin().setTargetState(target_wm);
-                }
-                // Check physical deviation
-                String currentWM = ((WMController) controller).getWm().toString();
-                if (!currentWM.equals(target_wm) && !target_wm.equals("null")){
-                    LOGGER.error("Physical Deviation Detected");
-                    if (currentWM.equals(preState)){
-                        delayedQueue.offer(new DelayedMessage(message, 100));
-                    }else {
-                        List<String> actionLists = calculateSolutions(cm_behaviorGraph, currentWM, target_wm, message);
-                        generateVMActions(actionLists, ((WMController) controller), delayedQueue);
-                        LOGGER.info("Action List: " + actionLists);
+                WMController wmController = (WMController) controller;
+                String targetStateWm = getTargetStateBasedOnBehaviourModels(preState, api, wm_behaviorGraph);
+                checkDigitalDeviation(wmController.getWmTwin().toDeviceString(), targetStateWm, new TargetStateSetter() {
+                    @Override
+                    public void setTargetState(String targetState) {
+                        wmController.getWmTwin().setTargetState(targetState);
                     }
-                }
+                });
+                checkPhysicalDeviation(wmController.getWm().toString(), preState, targetStateWm, cm_behaviorGraph, message, delayedQueue, new RecoveryActionGenerator() {
+                    @Override
+                    public void generate(List<String> actionLists) {
+                        generateVMActions(actionLists, wmController, delayedQueue);
+                    }
+                });
                 break;
             default:
                 LOGGER.info("Controller not found");
         }
+    }
+
+    private static void checkDigitalDeviation(String currentState, String targetState, TargetStateSetter targetStateSetter) {
+        if (!currentState.equals(targetState) && !targetState.equals("null")){
+            LOGGER.error("Digital Deviation Detected");
+            targetStateSetter.setTargetState(targetState);
+        }
+    }
+
+    private static void checkPhysicalDeviation(String currentPhysicalState, String preState, String targetState,
+                                               Graph<Object, Object> behaviorGraph, Message message,
+                                               DelayQueue<DelayedMessage> delayedQueue,
+                                               RecoveryActionGenerator recoveryActionGenerator) {
+        if (!currentPhysicalState.equals(targetState) && !targetState.equals("null")){
+            LOGGER.error("Physical Deviation Detected");
+            if (currentPhysicalState.equals(preState)){
+                delayedQueue.offer(new DelayedMessage(message, 100));
+            }else {
+                List<String> actionLists = calculateSolutions(behaviorGraph, currentPhysicalState, targetState, message);
+                recoveryActionGenerator.generate(actionLists);
+                LOGGER.info("Action List: " + actionLists);
+            }
+        }
+    }
+
+    private interface TargetStateSetter {
+        void setTargetState(String targetState);
+    }
+
+    private interface RecoveryActionGenerator {
+        void generate(List<String> actionLists);
     }
 
     private static void generateVMActions(List<String> actionLists, WMController controller, DelayQueue<DelayedMessage> delayedQueue) {
