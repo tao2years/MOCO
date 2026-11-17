@@ -3,6 +3,15 @@ Maintain Runtime Consistency for IoT Systems Based on Device Behavior Models
 
 This repository hosts the tool MOCA and associated data for the paper "Maintain Runtime Consistency for IoT Systems Based on Device Behavior Models."
 
+## Development
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started, and [docs/](docs/README.md) for the full development standards:
+
+- [docs/architecture.md](docs/architecture.md) — architecture & development context (module map, data flow, key contracts)
+- [docs/workflow.md](docs/workflow.md) — layered workflow: issue → spec/design → plan → coding → verification → review
+- [docs/coding-standards.md](docs/coding-standards.md), [docs/testing-standards.md](docs/testing-standards.md), [docs/review-standards.md](docs/review-standards.md), [docs/documentation-standards.md](docs/documentation-standards.md)
+- [CODE_REVIEW.md](CODE_REVIEW.md) — recorded code-review findings and known legacy issues
+
 ## Methodology
 
 MOCA is a platform-independent tool designed to maintain runtime consistency in IoT systems.
