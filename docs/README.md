@@ -14,7 +14,7 @@
 | [testing-standards.md](testing-standards.md) | 测试规范（单元、特征测试、golden 模型、CI） | 写代码的人/Agent |
 | [documentation-standards.md](documentation-standards.md) | 文档规范（目录结构、语言政策、design 文档要求） | 写文档的人/Agent |
 | [review-standards.md](review-standards.md) | 代码评审规范（PR 准入、评审重点、严重级别） | 提 PR 的人与评审者 |
-| [design/](design/) | 设计文档（spec）目录：要求见 [design/README.zh-CN.md](design/README.zh-CN.md) | 非平凡变更的作者 |
+| [design/](design/) | 设计文档（spec）目录：要求见 [design/README.zh-CN.md](design/README.zh-CN.md)；含 4 篇 **as-built 逆向知识沉淀**（graph 库 / 学习器 / 一致性引擎 / IoT 运行时） | 非平凡变更的作者、想深入既有实现的人 |
 | [plans/](plans/) | 实施计划目录：用途见 [plans/README.md](plans/README.md) | 多步/多 PR 变更的作者 |
 | [../CODE_REVIEW.md](../CODE_REVIEW.md) | 代码审查发现记录（活文档，历史遗留问题清单） | 评审者、维护者 |
 | [../AGENTS.md](../AGENTS.md) | 面向编码 Agent 的仓库工作约定（英文） | 编码 Agent |
@@ -43,10 +43,12 @@
 
 1. 读根目录 [README.md](../README.md)，理解 MOCA 做什么（学习设备行为模型 → 运行时一致性监控）。
 2. 读 [architecture.md](architecture.md)，建立模块地图与数据流心智模型。
-3. 读 [workflow.md](workflow.md)，明确"先 spec、后 Coding"的分层流程与各层准入门槛。
-4. 动手前按 [workflow.md](workflow.md) 的变更类型矩阵确认需要哪几层；写代码时对照
+3. 需要深入某个子系统的既有设计时，读 [design/](design/) 里对应的 as-built 文档
+   （graph 库、学习器、一致性引擎、IoT 运行时四篇，中英成对）。
+4. 读 [workflow.md](workflow.md)，明确"先 spec、后 Coding"的分层流程与各层准入门槛。
+5. 动手前按 [workflow.md](workflow.md) 的变更类型矩阵确认需要哪几层；写代码时对照
    [coding-standards.md](coding-standards.md) 与 [testing-standards.md](testing-standards.md)。
-5. 提 PR 前对照 [review-standards.md](review-standards.md) 与
+6. 提 PR 前对照 [review-standards.md](review-standards.md) 与
    [.github/pull_request_template.md](../.github/pull_request_template.md) 自查。
 
 ## 本地验证命令速查

@@ -5,6 +5,19 @@
 `docs/design/` 存放设计文档：描述**拟议的变更**、动机与验证方式。它是决策记录，
 供后续变更作者与评审者追溯"当时为什么这样做"。
 
+## 现有文档索引
+
+**As-built（逆向既有实现的知识沉淀，status = Implemented）**：
+
+| 文档 | 覆盖范围 |
+| ---- | ---- |
+| [2026-11-17-as-built-graph-library.zh-CN.md](2026-11-17-as-built-graph-library.zh-CN.md) | `graph/` 图库：索引结构、edgeId 编码、节点/边生命周期、五算法、已知细节决策 |
+| [2026-11-17-as-built-behavior-model-learner.zh-CN.md](2026-11-17-as-built-behavior-model-learner.zh-CN.md) | 行为模型学习器：骨架契约、探索算法、定点追踪、收敛循环、编号规则、导出/加载、真实设备学习器 |
+| [2026-11-17-as-built-consistency-engine.zh-CN.md](2026-11-17-as-built-consistency-engine.zh-CN.md) | 运行时一致性引擎：代理开关、preCheck/postCheck 语义、修复路径计算与回放、并发现状、已知缺陷位置 |
+| [2026-11-17-as-built-iot-runtime.zh-CN.md](2026-11-17-as-built-iot-runtime.zh-CN.md) | IoTSystem 运行时：消息生命周期、控制器映射规则、孪生三套字符串口径、虚拟设备语义 |
+
+**提案类（status = Draft/Approved）**：暂无。新提案按下方要求撰写。
+
 ## 何时需要设计文档
 
 按 [../workflow.md](../workflow.md) 第 1 节的变更分级矩阵判断。速查：

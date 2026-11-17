@@ -6,6 +6,21 @@
 their rationale, and how to verify them. A design doc is a decision record that
 later authors and reviewers can trace back to "why it was done this way".
 
+## Index of existing documents
+
+**As-built (reverse-engineered knowledge of the existing implementation,
+status = Implemented)**:
+
+| Document | Coverage |
+| -------- | -------- |
+| [2026-11-17-as-built-graph-library.md](2026-11-17-as-built-graph-library.md) | `graph/` library: index structures, edgeId encoding, node/edge lifecycle, the five algorithms, recorded implementation decisions |
+| [2026-11-17-as-built-behavior-model-learner.md](2026-11-17-as-built-behavior-model-learner.md) | Behavior-model learners: skeleton contract, exploration algorithm, fixed-point chasing, convergence loop, numbering rules, export/load, real-device learners |
+| [2026-11-17-as-built-consistency-engine.md](2026-11-17-as-built-consistency-engine.md) | Runtime consistency engine: proxy switch, preCheck/postCheck semantics, repair-path computation and replay, concurrency as-is, known-defect locations |
+| [2026-11-17-as-built-iot-runtime.md](2026-11-17-as-built-iot-runtime.md) | IoTSystem runtime: message lifecycle, controller mapping rules, the three twin string conventions, virtual-device semantics |
+
+**Proposals (status = Draft/Approved)**: none yet. New proposals follow the
+requirements below.
+
 ## When a design document is required
 
 Use the change-classification matrix in [../workflow.md](../workflow.md)

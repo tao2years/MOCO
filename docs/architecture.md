@@ -6,6 +6,12 @@
 > 事实基线：本文描述的行为以 `main` 分支 + 通过 `mvn verify` 的 122 个测试为准。
 > 已知的遗留缺陷与风险统一记录在 [CODE_REVIEW.md](../CODE_REVIEW.md)，本文不重复展开，
 > 只在受影响位置用 `⚠（CR-x）` 标注并链接。
+> 四大子系统的**深层既有设计**（索引结构、算法决策、语义口径、缺陷定位）已逆向沉淀为
+> as-built 设计文档，见 [design/README.zh-CN.md](design/README.zh-CN.md) 的索引：
+> [graph 库](design/2026-11-17-as-built-graph-library.zh-CN.md) /
+> [行为模型学习器](design/2026-11-17-as-built-behavior-model-learner.zh-CN.md) /
+> [运行时一致性引擎](design/2026-11-17-as-built-consistency-engine.zh-CN.md) /
+> [IoTSystem 运行时](design/2026-11-17-as-built-iot-runtime.zh-CN.md)。
 
 ## 1. 项目是什么
 

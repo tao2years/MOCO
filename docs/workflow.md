@@ -105,6 +105,9 @@ Layer 6  Record         行为变化更新 README/docs；遗留发现追加 CODE
 
 - 用户可见行为变化 → 更新根 [README.md](../README.md) 对应段落。
 - 架构/契约变化 → 更新 [architecture.md](architecture.md)（本文档体系的事实基线）。
+- **子系统既有设计无文档沉淀** → 按本仓库自己的规范逆向补 as-built 设计文档
+  （模式参照 [design/](design/) 现有四篇：graph 库 / 学习器 / 一致性引擎 / IoT 运行时；
+  status 标 `Implemented`，如实记录已知缺陷，不夹带修复方案）。
 - 评审中发现的**未修复**遗留问题 → 追加到 [CODE_REVIEW.md](../CODE_REVIEW.md)（按严重程度排序），
   并开 issue 跟踪。
 - 已实现的设计文档 → 将 status 更新为 `Implemented`（不必删除，设计记录是资产）。

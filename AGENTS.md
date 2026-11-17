@@ -74,6 +74,11 @@ root-relative paths. JDK 17 (Temurin) with Maven is the verified toolchain.
 - Design docs for behavior/cross-module changes go to `docs/design/` as
   **bilingual pairs** (`<name>.md` + `<name>.zh-CN.md`, same PR, aligned
   content). Template: `docs/design/templates/`.
+- Deep-dive knowledge of the existing subsystems is already deposited as
+  four as-built design docs (`docs/design/2026-11-17-as-built-*.md`):
+  graph library, behavior-model learners, runtime consistency engine, and
+  the IoTSystem runtime. Read the one covering the area you change before
+  coding; record new subsystem knowledge the same way when it is missing.
 - Multi-PR implementations get a plan in `docs/plans/`.
 - User-visible behavior changes update `README.md`; contract/architecture
   changes update `docs/architecture.md` — in the same PR.

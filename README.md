@@ -10,6 +10,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started, and [docs/](docs/README.
 - [docs/architecture.md](docs/architecture.md) — architecture & development context (module map, data flow, key contracts)
 - [docs/workflow.md](docs/workflow.md) — layered workflow: issue → spec/design → plan → coding → verification → review
 - [docs/coding-standards.md](docs/coding-standards.md), [docs/testing-standards.md](docs/testing-standards.md), [docs/review-standards.md](docs/review-standards.md), [docs/documentation-standards.md](docs/documentation-standards.md)
+- [docs/design/](docs/design/README.zh-CN.md) — design docs, including as-built knowledge records of the four subsystems (graph library, learners, consistency engine, IoT runtime)
 - [CODE_REVIEW.md](CODE_REVIEW.md) — recorded code-review findings and known legacy issues
 
 ## Methodology
