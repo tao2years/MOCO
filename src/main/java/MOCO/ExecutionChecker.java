@@ -349,15 +349,14 @@ public class ExecutionChecker {
     }
 
     public static List<String> calculateSolutions(Graph<Object, Object> behaviorGraph, String source, String target, Message message) {
-        String sourceNode = findNodeContaining(behaviorGraph, source, "sourceNode");
-        String targetNode = findNodeContaining(behaviorGraph, target, "targetNode");
-        String originNode = findNodeContaining(behaviorGraph, "S0", "S0");
+        String sourceNode = findNodeContaining(behaviorGraph, source);
+        String targetNode = findNodeContaining(behaviorGraph, target);
+        String originNode = findNodeContaining(behaviorGraph, "S0");
         LOGGER.info("Calculate Solutions");
 
         List<List<String>> paths = Utils.findShortestPaths(behaviorGraph, sourceNode, targetNode, originNode);
         String requestedApi = message.getDeviceAPI();
         List<String> endsWithApi = null;
-        List<String> endsWithApiWithoutOrigin = null;
         List<String> withoutOrigin = null;
         for (List<String> path : paths) {
             if (path.isEmpty()) {
@@ -384,8 +383,8 @@ public class ExecutionChecker {
         return paths.isEmpty() ? new ArrayList<>() : paths.get(0);
     }
 
-    /** Last edge source whose serialized form contains {@code fragment}. */
-    private static String findNodeContaining(Graph<Object, Object> graph, String fragment, String label) {
+    /** First edge source whose serialized form contains {@code fragment}. */
+    private static String findNodeContaining(Graph<Object, Object> graph, String fragment) {
         for (graph.Edge edge : graph.getEdges()) {
             if (edge.getSource().contains(fragment)) {
                 LOGGER.info(edge.getSource());
