@@ -99,6 +99,10 @@ public class Gateway {
                 "}";
     }
 
+    public int getDeviceList() {
+        return deviceList;
+    }
+
     @Override
     public String toString() {
         return "Gateway{" +

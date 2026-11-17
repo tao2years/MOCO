@@ -5,146 +5,89 @@ import VirtualDevice.CoffeeMachine;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CMController {
+public class CMController extends AbstractDeviceController<CoffeeMachine, CMTwin> {
     private static final Logger LOGGER = LogManager.getLogger();
-    String deviceId;
-    CoffeeMachine coffeeMachine;
-    CMTwin cmTwin;
 
-    public String getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
+    public CMController(String deviceId, CoffeeMachine coffeeMachine, CMTwin cmTwin) {
+        super(deviceId, coffeeMachine, cmTwin, CoffeeMachine.class, CMTwin.class);
     }
 
     public CoffeeMachine getCoffeeMachine() {
-        return coffeeMachine;
+        return getDevice();
     }
 
     public void setCoffeeMachine(CoffeeMachine coffeeMachine) {
-        this.coffeeMachine = coffeeMachine;
+        setDevice(coffeeMachine);
     }
 
     public CMTwin getCmTwin() {
-        return cmTwin;
+        return getTwin();
     }
 
     public void setCmTwin(CMTwin cmTwin) {
-        this.cmTwin = cmTwin;
+        setTwin(cmTwin);
     }
 
-    public CMController(String deviceId, CoffeeMachine coffeeMachine, CMTwin cmTwin) {
-        this.deviceId = deviceId;
-        this.coffeeMachine = coffeeMachine;
-        this.cmTwin = cmTwin;
+    public void turnOn() {
+        if (getCoffeeMachine().turnOn().equals("success"))
+            getCmTwin().setPowerOn(true);
     }
 
-    public void turnOn(){
-        String result = coffeeMachine.turnOn();
-        if (result.equals("success"))
-            cmTwin.setPowerOn(true);
+    public void turnOff() {
+        if (getCoffeeMachine().turnOff().equals("success"))
+            getCmTwin().setPowerOn(false);
     }
 
-    public void turnOff(){
-        String result = coffeeMachine.turnOff();
-        if (result.equals("success"))
-            cmTwin.setPowerOn(false);
-    }
-
-    public void addCoffeeBean(){
-        String result = coffeeMachine.addCoffeeBean();
-        if (result.equals("success")){
-            int currentBean = coffeeMachine.getCurrentBeanVolume();
-            boolean beanStatus = coffeeMachine.isBeanReady();
-            cmTwin.setCurrentBeanVolume(currentBean);
-            cmTwin.setBeanReady(beanStatus);
+    public void addCoffeeBean() {
+        if (getCoffeeMachine().addCoffeeBean().equals("success")) {
+            getCmTwin().setCurrentBeanVolume(getCoffeeMachine().getCurrentBeanVolume());
+            getCmTwin().setBeanReady(getCoffeeMachine().isBeanReady());
         }
     }
 
-    public void addWater(){
-        String result = coffeeMachine.addWater();
-        if (result.equals("success")){
-            int currentWater = coffeeMachine.getCurrentWaterVolume();
-            boolean waterStatus = coffeeMachine.isWaterReady();
-            cmTwin.setCurrentWaterVolume(currentWater);
-            cmTwin.setWaterReady(waterStatus);
+    public void addWater() {
+        if (getCoffeeMachine().addWater().equals("success")) {
+            getCmTwin().setCurrentWaterVolume(getCoffeeMachine().getCurrentWaterVolume());
+            getCmTwin().setWaterReady(getCoffeeMachine().isWaterReady());
         }
     }
 
-    public void addMilk(){
-        String result = coffeeMachine.addMilk();
-        if (result.equals("success")){
-            int currentMilk = coffeeMachine.getCurrentMilkVolume();
-            boolean milkStatus = coffeeMachine.isMilkReady();
-            cmTwin.setCurrentMilkVolume(currentMilk);
-            cmTwin.setMilkReady(milkStatus);
+    public void addMilk() {
+        if (getCoffeeMachine().addMilk().equals("success")) {
+            getCmTwin().setCurrentMilkVolume(getCoffeeMachine().getCurrentMilkVolume());
+            getCmTwin().setMilkReady(getCoffeeMachine().isMilkReady());
         }
     }
 
     public void placeCup() {
-        String result = coffeeMachine.placeCup();
-        if (result.equals("success"))
-            cmTwin.setCupReady(true);
+        if (getCoffeeMachine().placeCup().equals("success"))
+            getCmTwin().setCupReady(true);
     }
 
-    public void fetchCoffee(){
-        String result = coffeeMachine.fetchCoffee();
-        if (result.equals("success")){
-            cmTwin.setCupReady(false);
-            cmTwin.setThisTimeCoffeeReady(false);
+    public void fetchCoffee() {
+        if (getCoffeeMachine().fetchCoffee().equals("success")) {
+            getCmTwin().setCupReady(false);
+            getCmTwin().setThisTimeCoffeeReady(false);
         }
     }
 
-//    public void brewCoffee(Object[] type) {
-//        String result = coffeeMachine.brewCoffee((Integer) type[0]);
-//        cmTwin.updateAllFromString(coffeeMachine.toString());
-//    }
-
     public void brewCoffee(int type) {
-        String result = coffeeMachine.brewCoffee(type);
-        cmTwin.updateAllFromString(coffeeMachine.toString());
-    }
-
-    public void printInternalState(){
-        LOGGER.info("Device ID: " + deviceId);
-        String coffeeMachineString = coffeeMachine.toString();
-        LOGGER.info("Coffee Machine: " + coffeeMachineString);
-        String cmTwinString = cmTwin.toString();
-        LOGGER.info("Coffee Machine Twin: " + cmTwinString);
-        boolean equal = coffeeMachineString.replace("CoffeeMachine","").equals(cmTwinString.replace("CMTwin",""));
-        LOGGER.info("Equal: " + equal);
+        getCoffeeMachine().brewCoffee(type);
+        getCmTwin().updateAllFromString(getCoffeeMachine().toString());
     }
 
     public static void main(String[] args) {
-        CoffeeMachine coffeeMachine = new CoffeeMachine();
-        CMTwin cmTwin = new CMTwin();
-        CMController cmController = new CMController("CM001", coffeeMachine, cmTwin);
+        CMController cmController =
+                new CMController("CM001", new CoffeeMachine(), new CMTwin());
         cmController.turnOn();
-        LOGGER.info("[*] Coffee Machine is turned on.");
-        cmController.printInternalState();
         cmController.addCoffeeBean();
-        LOGGER.info("[*] Coffee bean is added.");
-        cmController.printInternalState();
         cmController.addWater();
-        LOGGER.info("[*] Water is added.");
-        cmController.printInternalState();
         cmController.addMilk();
-        LOGGER.info("[*] Milk is added.");
-        cmController.printInternalState();
         cmController.placeCup();
-        LOGGER.info("[*] Cup is placed.");
-        cmController.printInternalState();
         cmController.brewCoffee(1);
-        LOGGER.info("[*] Brewing coffee.");
         cmController.printInternalState();
         cmController.fetchCoffee();
-        LOGGER.info("[*] Coffee is fetched.");
-        cmController.printInternalState();
         cmController.turnOff();
-        LOGGER.info("[*] Coffee Machine is turned off.");
         cmController.printInternalState();
     }
-
 }

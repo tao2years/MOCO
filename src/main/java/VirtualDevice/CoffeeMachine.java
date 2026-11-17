@@ -19,9 +19,9 @@ public class CoffeeMachine {
     private boolean isWorking;
     private boolean isPowerOn;
 
-    private static final int MAX_WATER_VOLUME = 1800;
-    private static final int MAX_COFFEE_BEAN_VOLUME = 250;
-    private static final int MAX_MILK_VOLUME = 400;
+    public static final int MAX_WATER_VOLUME = 1800;
+    public static final int MAX_COFFEE_BEAN_VOLUME = 250;
+    public static final int MAX_MILK_VOLUME = 400;
 
     private int currentWaterVolume;
     private int currentBeanVolume;

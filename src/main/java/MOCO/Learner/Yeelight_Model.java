@@ -13,25 +13,29 @@ import java.util.*;
 import static MOCO.Utils.generateDotFile;
 import static MOCO.Utils.saveEdgesToFile;
 
-public class Yeelight_Model {
+/**
+ * Learns the behavior model of the virtual {@link Yeelight}.
+ */
+public class Yeelight_Model extends BehaviorModelLearner<Yeelight> {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static Map<String, Set<String>> stateTransitions;
 
     public Yeelight_Model() {
-        stateTransitions = new HashMap<>();
+        super(new Yeelight());
     }
 
-    private static List<API> getAllPossibleAPIs() {
+    @Override
+    protected List<API> getAllPossibleAPIs() {
         List<API> apis = new ArrayList<>();
-        apis.add(new API("turnOn", true,false));
-        apis.add(new API("turnOff", true,false));
-        apis.add(new API("setBrightness", true,false));
-        apis.add(new API("setRGB", true,false));
+        apis.add(new API("turnOn", true, false));
+        apis.add(new API("turnOff", true, false));
+        apis.add(new API("setBrightness", true, false));
+        apis.add(new API("setRGB", true, false));
         return apis;
     }
 
-    private static String executeApi(String api, Yeelight yeelight) {
-        switch (api) {
+    @Override
+    protected String executeApi(API api, Yeelight yeelight) {
+        switch (api.getName()) {
             case "turnOn":
                 return yeelight.turnOn().equals("success") ? yeelight.toString() : "skip";
             case "turnOff":
@@ -47,37 +51,24 @@ public class Yeelight_Model {
         }
     }
 
-    private static void generateGraph(Set<Edge> edges){
-        Yeelight device = new Yeelight();
-        String initState = device.toString();
-        String initSystemState = device.toSystemString();
-        stateTransitions.put(initSystemState, new HashSet<>());
-
-//        LOGGER.info("Initial state: " + initState + " System state: " + initSystemState);
-        exploreState(initState, initSystemState, edges);
+    @Override
+    protected Yeelight fromString(String state) {
+        return Yeelight.fromString(state);
     }
 
-    private static void exploreState(String state, String systemState, Set<Edge> edges){
-        List<API> apis = getAllPossibleAPIs();
+    @Override
+    protected String toSystemState(Yeelight device) {
+        return device.toSystemString();
+    }
 
-        for (API api : apis) {
-            Yeelight currentDevice = Yeelight.fromString(state);
-            String nextState = executeApi(api.getName(), currentDevice);
-            if (!nextState.equals("skip")){
-                Yeelight nextWM = Yeelight.fromString(nextState);
-                String nextSystemState = nextWM.toSystemString();
-                Edge edge = new Edge(systemState, nextSystemState, api.toString());
-                edges.add(edge);
+    @Override
+    protected String toStringState(Yeelight device) {
+        return device.toString();
+    }
 
-                if (!stateTransitions.containsKey(nextSystemState)) {
-                    stateTransitions.put(nextSystemState, new HashSet<>());
-                    exploreState(nextWM.toString(), nextSystemState, edges);
-                }
-
-                stateTransitions.get(systemState).add(api.getName());
-
-            }
-        }
+    @Override
+    protected BehaviorModelLearner<Yeelight> newInstance() {
+        return new Yeelight_Model();
     }
 
     /**
@@ -171,7 +162,5 @@ public class Yeelight_Model {
         Collection<graph.Edge> edge = userGraph.getEdges();
         String fileName = "src/main/java/MOCO/modelFiles/yeelight.json";
         saveEdgesToFile(edge, fileName);
-
     }
-
 }

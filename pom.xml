@@ -45,8 +45,7 @@
             <artifactId>oshi-core</artifactId>
             <version>6.6.1</version>
         </dependency>
-
-        <!-- Testing -->
+        <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
