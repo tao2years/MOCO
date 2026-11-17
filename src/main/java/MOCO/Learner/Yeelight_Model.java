@@ -2,11 +2,16 @@ package MOCO.Learner;
 
 import MOCO.API;
 import MOCO.Edge;
+import MOCO.Node;
 import VirtualDevice.Yeelight;
+import graph.Graph;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
+
+import static MOCO.Utils.generateDotFile;
+import static MOCO.Utils.saveEdgesToFile;
 
 /**
  * Learns the behavior model of the virtual {@link Yeelight}.
@@ -66,16 +71,96 @@ public class Yeelight_Model extends BehaviorModelLearner<Yeelight> {
         return new Yeelight_Model();
     }
 
+    /**
+     * Explores the Yeelight virtual device state space and collects the learned transitions.
+     * The exploration is fully deterministic: the virtual device has no I/O or randomness,
+     * so repeated runs always yield the same edge set.
+     *
+     * @return the set of learned transitions between abstract system states
+     */
+    public static Set<Edge> exploreEdges() {
+        Set<Edge> edges = new HashSet<>();
+        for (int i = 0; i < 2; i++) {
+            LOGGER.info("Iteration: " + i);
+            Set<Edge> temp = new HashSet<>();
+            Yeelight_Model test = new Yeelight_Model();
+            test.generateGraph(temp);
+            edges.addAll(temp);
+        }
+        return edges;
+    }
+
+    /**
+     * Regenerates the Yeelight behavior model from scratch.
+     * States are numbered S0..Sn in case-insensitive alphabetical order of their
+     * abstract system state string, which keeps the node ids stable across runs.
+     * This is the same construction {@link #main(String[])} uses to write the
+     * golden files, exposed so the CI golden-file regression test can re-run it.
+     *
+     * @return the learned behavior graph with Node-encoded node ids and API edge labels
+     */
+    public static Graph<Object, Object> buildBehaviorGraph() {
+        Set<Edge> edges = exploreEdges();
+
+        Set<String> nodesSet = new TreeSet<>();
+        for (Edge edge : edges) {
+            nodesSet.add(edge.getSource());
+            nodesSet.add(edge.getTarget());
+        }
+        Set<String> nodeOrderSet = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+        nodeOrderSet.addAll(nodesSet);
+
+        // Create node numbers map
+        Map<String, String> nodeNumbers = new HashMap<>();
+        int nodeCount = 0;
+        for (String node : nodeOrderSet) {
+            String nodeNumber = "S" + nodeCount;
+            nodeNumbers.put(node, nodeNumber);
+            nodeCount++;
+        }
+
+        Graph<Object, Object> userGraph = new Graph<>(true, true, false);
+        Set<Edge> dotSet = new HashSet<>();
+        for (Edge edge : edges) {
+            String nodeNumber = nodeNumbers.get(edge.getSource());
+            String targetNumber = nodeNumbers.get(edge.getTarget());
+            String api = edge.getApi();
+            userGraph.setEdge(new Node(nodeNumber, edge.getSource()).toString(),
+                    new Node(targetNumber, edge.getTarget()).toString(), api, api);
+            dotSet.add(new Edge(nodeNumber, targetNumber, api));
+        }
+
+        LOGGER.info("Node Count: " + nodeCount + " Edge Count: " + dotSet.size());
+        return userGraph;
+    }
+
+    private static String nodeId(String nodeString) {
+        int start = nodeString.indexOf("\"nodeId\":\"") + "\"nodeId\":\"".length();
+        return nodeString.substring(start, nodeString.indexOf('"', start));
+    }
+
     public static void main(String[] args) {
         long startTime = System.nanoTime();
-        Yeelight_Model learner = new Yeelight_Model();
-        Set<Edge> edges = learner.learnEdges(0, 2);
-        LOGGER.info("[Finished generating graph] Total edges: {}", edges.size());
-        Map<String, String> nodeMap = learner.export(edges,
-                "src/main/java/MOCO/modelFiles/yeelight_output.dot",
-                "src/main/java/MOCO/modelFiles/yeelight.json");
-        double seconds = (System.nanoTime() - startTime) / 1000000000.0;
-        LOGGER.info("Program ran for {} seconds.", seconds);
-        LOGGER.info("Node Count: {} Edge Count: {}", nodeMap.size(), edges.size());
+
+        Graph<Object, Object> userGraph = buildBehaviorGraph();
+
+        long endTime = System.nanoTime(); // end time
+        long elapsedTime = endTime - startTime; // running time
+
+        double seconds = (double) elapsedTime / 1000000000.0; // transfer to seconds
+
+        LOGGER.info("Program ran for " + seconds + " seconds.");
+
+        Set<Edge> dotSet = new HashSet<>();
+        for (graph.Edge edge : userGraph.getEdges()) {
+            dotSet.add(new Edge(nodeId(edge.getSource()), nodeId(edge.getTarget()), edge.getName()));
+        }
+
+        String dotFile = "src/main/java/MOCO/modelFiles/yeelight_output.dot";
+        generateDotFile(dotSet, userGraph.nodeCount(), dotFile);
+
+        Collection<graph.Edge> edge = userGraph.getEdges();
+        String fileName = "src/main/java/MOCO/modelFiles/yeelight.json";
+        saveEdgesToFile(edge, fileName);
     }
 }
