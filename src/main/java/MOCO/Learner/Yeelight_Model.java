@@ -80,36 +80,47 @@ public class Yeelight_Model {
         }
     }
 
-    public static void main(String[] args) {
-        long startTime = System.nanoTime();
-        Graph<Object, Object> userGraph = new Graph<>(true,true,false);
+    /**
+     * Explores the Yeelight virtual device state space and collects the learned transitions.
+     * The exploration is fully deterministic: the virtual device has no I/O or randomness,
+     * so repeated runs always yield the same edge set.
+     *
+     * @return the set of learned transitions between abstract system states
+     */
+    public static Set<Edge> exploreEdges() {
         Set<Edge> edges = new HashSet<>();
-        int[] sizeHistory = new int[20];
-        int historyIndex = 0;
-        Set<String> nodesSet = new TreeSet<>();
-        Set<String> nodeOrderSet = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
-        // Create node numbers map
-        Map<String, String> nodeNumbers = new HashMap<>();
-
-        int iteration = 0;
         for (int i = 0; i < 2; i++) {
-            LOGGER.info("Iteration: " + iteration++);
-            Set<Edge> _temp = new HashSet<>();
+            LOGGER.info("Iteration: " + i);
+            Set<Edge> temp = new HashSet<>();
             Yeelight_Model test = new Yeelight_Model();
-            test.generateGraph(_temp);
-            edges.addAll(_temp);
+            test.generateGraph(temp);
+            edges.addAll(temp);
         }
+        return edges;
+    }
 
-        for (Edge edge: edges){
-            String source = edge.getSource();
-            String target = edge.getTarget();
-            nodesSet.add(source);
-            nodesSet.add(target);
+    /**
+     * Regenerates the Yeelight behavior model from scratch.
+     * States are numbered S0..Sn in case-insensitive alphabetical order of their
+     * abstract system state string, which keeps the node ids stable across runs.
+     * This is the same construction {@link #main(String[])} uses to write the
+     * golden files, exposed so the CI golden-file regression test can re-run it.
+     *
+     * @return the learned behavior graph with Node-encoded node ids and API edge labels
+     */
+    public static Graph<Object, Object> buildBehaviorGraph() {
+        Set<Edge> edges = exploreEdges();
+
+        Set<String> nodesSet = new TreeSet<>();
+        for (Edge edge : edges) {
+            nodesSet.add(edge.getSource());
+            nodesSet.add(edge.getTarget());
         }
-
+        Set<String> nodeOrderSet = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
         nodeOrderSet.addAll(nodesSet);
 
-        // Count node numbers
+        // Create node numbers map
+        Map<String, String> nodeNumbers = new HashMap<>();
         int nodeCount = 0;
         for (String node : nodeOrderSet) {
             String nodeNumber = "S" + nodeCount;
@@ -117,81 +128,30 @@ public class Yeelight_Model {
             nodeCount++;
         }
 
-        // print out edges and apis
-        int sumEdge = 0;
-        for (String node : nodeNumbers.keySet()) {
-            Set<String> visitedApis = new HashSet<>();
-            int temp = 0;
-            for (Edge edge : edges) {
-                if (edge.getSource().equals(node)) {
-                    String target = edge.getTarget();
-                    String api = edge.getApi();
-                    String targetAndApi = target + " " + api;
-                    if (!visitedApis.contains(targetAndApi)) {
-//                            LOGGER.info("- " + nodeNumbers.get(target) + ", API = \"" + api + "\" + " + " " + target);
-                        visitedApis.add(targetAndApi);
-                        temp++;
-                    }
-                }
-            }
-            sumEdge += temp;
-        }
-
-        LOGGER.info("Node Count: " + nodeCount);
-        LOGGER.info("Sum Edge: " + sumEdge);
-
-        sizeHistory[historyIndex] = sumEdge;
-        historyIndex = (historyIndex + 1) % 20;
-        LOGGER.info("[History]: " + Arrays.toString(sizeHistory));
-        LOGGER.info("------------------------");
-
-        LOGGER.info("\n\n\n\n------------------------");
-        LOGGER.info("[Finished generating graph]");
-        LOGGER.info("[Total]: " + edges.size());
-
-        // Construct Dot Graph
-        Map<String, String> nodeMap = new HashMap<>();
-        Set<String> _nodesSet = new TreeSet<>();
-        Set<String> _nodeOrderSet = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+        Graph<Object, Object> userGraph = new Graph<>(true, true, false);
         Set<Edge> dotSet = new HashSet<>();
-        for (Edge edge : edges){
-            String source = edge.getSource();
-            String target = edge.getTarget();
-            _nodesSet.add(source);
-            _nodesSet.add(target);
+        for (Edge edge : edges) {
+            String nodeNumber = nodeNumbers.get(edge.getSource());
+            String targetNumber = nodeNumbers.get(edge.getTarget());
+            String api = edge.getApi();
+            userGraph.setEdge(new Node(nodeNumber, edge.getSource()).toString(),
+                    new Node(targetNumber, edge.getTarget()).toString(), api, api);
+            dotSet.add(new Edge(nodeNumber, targetNumber, api));
         }
 
-        _nodeOrderSet.addAll(nodesSet);
+        LOGGER.info("Node Count: " + nodeCount + " Edge Count: " + dotSet.size());
+        return userGraph;
+    }
 
-        int _nodeCount = 0;
-        for (String node : _nodeOrderSet) {
-            String nodeNumber = "S" + _nodeCount;
-            nodeMap.put(node, nodeNumber);
-            _nodeCount++;
-        }
+    private static String nodeId(String nodeString) {
+        int start = nodeString.indexOf("\"nodeId\":\"") + "\"nodeId\":\"".length();
+        return nodeString.substring(start, nodeString.indexOf('"', start));
+    }
 
-        for (String node : nodeMap.keySet()) {
-            String nodeNumber = nodeMap.get(node);
-            LOGGER.info("Node: " + nodeNumber);
-            LOGGER.info("State: " + node);
+    public static void main(String[] args) {
+        long startTime = System.nanoTime();
 
-            LOGGER.info("OutEdges:");
-            Set<String> visitedApis = new HashSet<>();
-            for (Edge edge : edges) {
-                if (edge.getSource().equals(node)) {
-                    String target = edge.getTarget();
-                    String api = edge.getApi();
-                    String targetAndApi = target + " " + api;
-                    if (!visitedApis.contains(targetAndApi)) {
-                        LOGGER.info("- " + nodeMap.get(target) + ", API = \"" + api + "\" + " + " " + target);
-                        userGraph.setEdge(new Node(nodeNumber, node).toString(), new Node(nodeMap.get(target), target).toString(), api, api);
-                        dotSet.add(new Edge(nodeNumber, nodeMap.get(target), api));
-                        visitedApis.add(targetAndApi);
-                    }
-                }
-            }
-            System.out.println();
-        }
+        Graph<Object, Object> userGraph = buildBehaviorGraph();
 
         long endTime = System.nanoTime(); // end time
         long elapsedTime = endTime - startTime; // running time
@@ -200,10 +160,13 @@ public class Yeelight_Model {
 
         LOGGER.info("Program ran for " + seconds + " seconds.");
 
-        LOGGER.info("Node Count: " + nodeCount + " Edge Count: " + dotSet.size());
+        Set<Edge> dotSet = new HashSet<>();
+        for (graph.Edge edge : userGraph.getEdges()) {
+            dotSet.add(new Edge(nodeId(edge.getSource()), nodeId(edge.getTarget()), edge.getName()));
+        }
 
         String dotFile = "src/main/java/MOCO/modelFiles/yeelight_output.dot";
-        generateDotFile(dotSet, nodeMap.size(), dotFile);
+        generateDotFile(dotSet, userGraph.nodeCount(), dotFile);
 
         Collection<graph.Edge> edge = userGraph.getEdges();
         String fileName = "src/main/java/MOCO/modelFiles/yeelight.json";
