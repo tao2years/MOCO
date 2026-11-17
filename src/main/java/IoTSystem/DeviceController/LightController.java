@@ -5,99 +5,58 @@ import VirtualDevice.Yeelight;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class LightController {
+public class LightController extends AbstractDeviceController<Yeelight, LightTwin> {
     private static final Logger LOGGER = LogManager.getLogger();
-    String deviceId;
-    Yeelight yeelight;
-    LightTwin lightTwin;
 
-    public String getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
+    public LightController(String deviceId, Yeelight yeelight, LightTwin lightTwin) {
+        super(deviceId, yeelight, lightTwin, Yeelight.class, LightTwin.class);
     }
 
     public Yeelight getYeelight() {
-        return yeelight;
+        return getDevice();
     }
 
     public void setYeelight(Yeelight yeelight) {
-        this.yeelight = yeelight;
+        setDevice(yeelight);
     }
 
     public LightTwin getLightTwin() {
-        return lightTwin;
+        return getTwin();
     }
 
     public void setLightTwin(LightTwin lightTwin) {
-        this.lightTwin = lightTwin;
-    }
-
-    public LightController(String deviceId, Yeelight yeelight, LightTwin lightTwin) {
-        this.deviceId = deviceId;
-        this.yeelight = yeelight;
-        this.lightTwin = lightTwin;
+        setTwin(lightTwin);
     }
 
     public void turnOn() {
-        String result = yeelight.turnOn();
-        if (result.equals("success"))
-            lightTwin.setPowerOn(true);
+        if (getYeelight().turnOn().equals("success"))
+            getLightTwin().setPowerOn(true);
     }
 
     public void turnOff() {
-        String result = yeelight.turnOff();
-        if (result.equals("success"))
-            lightTwin.setPowerOn(false);
+        if (getYeelight().turnOff().equals("success"))
+            getLightTwin().setPowerOn(false);
     }
 
     public void setBrightness(int brightness) {
-        String result = yeelight.setBrightness(brightness);
-        if (result.equals("success"))
-            lightTwin.setBrightness(brightness);
+        if (getYeelight().setBrightness(brightness).equals("success"))
+            getLightTwin().setBrightness(brightness);
     }
 
     public void setRGB(int r, int g, int b) {
-        String result = yeelight.setRGB(r, g, b);
-        if (result.equals("success"))
-            lightTwin.setRgb(r,g,b);
-    }
-
-
-
-    public void printInternalState(){
-        LOGGER.info("Device ID: " + deviceId);
-        String yeelightString = yeelight.toString();
-        LOGGER.info("Yeelight: " + yeelightString);
-        String lightTwinString = lightTwin.toString();
-        LOGGER.info("Light Twin: " + lightTwinString);
-        boolean equal = yeelightString.replace("Yeelight","").equals(lightTwinString.replace("LightTwin",""));
-        LOGGER.info("Equal: " + equal);
+        if (getYeelight().setRGB(r, g, b).equals("success"))
+            getLightTwin().setRgb(r, g, b);
     }
 
     public static void main(String[] args) {
-        Yeelight yeelight = new Yeelight(10, true, 255, 255, 255);
-        LightTwin lightTwin = new LightTwin(10, true, 255, 255, 255);
-        LightController lightController = new LightController("light1", yeelight, lightTwin);
+        LightController lightController = new LightController("light1",
+                new Yeelight(10, true, 255, 255, 255),
+                new LightTwin(10, true, 255, 255, 255));
         lightController.printInternalState();
         lightController.turnOff();
-        LOGGER.info("[*] Turn off the light");
-        lightController.printInternalState();
         lightController.turnOn();
-        LOGGER.info("[*] Turn on the light");
-        lightController.printInternalState();
-//        lightController.turnOff();
-//        LOGGER.info("[*] Turn off the light");
-//        lightController.printInternalState();
         lightController.setBrightness(50);
-        LOGGER.info("[*] Set brightness to 50");
-        lightController.printInternalState();
         lightController.setRGB(120, 130, 111);
-        LOGGER.info("[*] Set RGB to 120, 130, 111");
         lightController.printInternalState();
     }
-
-
 }

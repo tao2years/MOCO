@@ -2,27 +2,25 @@ package MOCO.Learner;
 
 import MOCO.API;
 import MOCO.Edge;
-import MOCO.Node;
 import VirtualDevice.CoffeeMachine;
-import graph.Graph;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
-import static MOCO.Utils.generateDotFile;
-import static MOCO.Utils.saveEdgesToFile;
-
-public class CoffeeMachine_Model {
+/**
+ * Learns the behavior model of the virtual {@link CoffeeMachine}.
+ * Exploration logic lives in {@link BehaviorModelLearner}.
+ */
+public class CoffeeMachine_Model extends BehaviorModelLearner<CoffeeMachine> {
     private static final Logger LOGGER = LogManager.getLogger();
-    private static Map<String, Set<String>> stateTransitions;
-    private static final int MAX_MODE = 20;
 
     public CoffeeMachine_Model() {
-        stateTransitions = new HashMap<>();
+        super(new CoffeeMachine());
     }
 
-    private static List<API> getAllPossibleAPIs() {
+    @Override
+    protected List<API> getAllPossibleAPIs() {
         List<API> apis = new ArrayList<>();
         apis.add(new API("turnOn", true, false));
         apis.add(new API("turnOff", true, false));
@@ -32,15 +30,14 @@ public class CoffeeMachine_Model {
         apis.add(new API("placeCup", true, true));
         apis.add(new API("fetchCoffee", true, true));
         for (int i = 1; i <= 3; i++) {
-            String apiName = "brewCoffee_" + i;
-            apis.add(new API(apiName, false, false));
+            apis.add(new API("brewCoffee_" + i, false, false));
         }
-
         return apis;
     }
 
-    private static String executeApi(String api, CoffeeMachine device){
-        switch (api) {
+    @Override
+    protected String executeApi(API api, CoffeeMachine device) {
+        switch (api.getName()) {
             case "turnOn":
                 return device.turnOn().equals("success") ? device.toString() : "skip";
             case "turnOff":
@@ -66,226 +63,37 @@ public class CoffeeMachine_Model {
         }
     }
 
-    private static void generateGraph(Set<Edge> edges) {
-        CoffeeMachine device = new CoffeeMachine();
-        String initState = device.toString();
-        String initSystemState = device.toSystemStateString();
-        stateTransitions.put(initSystemState, new HashSet<>());
-
-        exploreState(initState, initSystemState, edges);
+    @Override
+    protected CoffeeMachine fromString(String state) {
+        return CoffeeMachine.fromString(state);
     }
 
-    private static void exploreState(String state, String systemState, Set<Edge> edges) {
-        List<API> apis = getAllPossibleAPIs();
-        for (API api : apis) {
-            CoffeeMachine currentCM = CoffeeMachine.fromString(state);
-            String nextState = executeApi(api.getName(), currentCM);
-            if (!nextState.equals("skip")){
-                CoffeeMachine nextCM = CoffeeMachine.fromString(nextState);
-                String nextSystemState = nextCM.toSystemStateString();
-                Edge edge = new Edge(systemState, nextSystemState, api.toString());
-                edges.add(edge);
+    @Override
+    protected String toSystemState(CoffeeMachine device) {
+        return device.toSystemStateString();
+    }
 
-                int temp = 0;
-                while (systemState.equals(nextSystemState)) {
-                    if (state.equals(nextState)) {
-//                    LOGGER.info("Api: " + api);
-//                    LOGGER.info("Current: " + state);
-//                    LOGGER.info("Next: " + nextState);
-//                    LOGGER.info("State is the same, breaking.");
-                        break;
-                    }else {
-                        String source = nextSystemState;
-                        String _nextState = executeApi(api.getName(), nextCM);
-                        nextCM = CoffeeMachine.fromString(_nextState);
-                        String target = nextCM.toSystemStateString();
-                        Edge _edge = new Edge(source, target, api.toString());
-                        edges.add(_edge);
-                        temp++;
-                        if (temp>MAX_MODE) {
-//                        LOGGER.info("[MAX] State is the same, breaking.");
-                            break;
-                        }
-                    }
-                }
+    @Override
+    protected String toStringState(CoffeeMachine device) {
+        return device.toString();
+    }
 
-                if (!stateTransitions.containsKey(nextSystemState)) {
-                    stateTransitions.put(nextSystemState, new HashSet<>());
-                    exploreState(nextCM.toString(), nextSystemState, edges);
-                }
-
-                stateTransitions.get(systemState).add(api.getName());
-            }
-        }
+    @Override
+    protected BehaviorModelLearner<CoffeeMachine> newInstance() {
+        return new CoffeeMachine_Model();
     }
 
     public static void main(String[] args) {
-        long startTime = System.nanoTime(); // start time
-        Graph<Object, Object> userGraph = new Graph<>(true,true,false);
-
-        Set<Edge> edges = new HashSet<>();
-        int[] sizeHistory = new int[20];
-        int historyIndex = 0;
-        Set<String> nodesSet = new TreeSet<>();
-        Set<String> nodeOrderSet = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
-        Map<String, String> nodeNumbers = new HashMap<>();
-        int sumEdgeLast;
-
-        Set<Edge> final_Edges = new HashSet<>();
-
-        for (int i = 0; i < 100; i++) {
-            Set<Edge> _temp = new HashSet<>();
-            CoffeeMachine_Model test = new CoffeeMachine_Model();
-            test.generateGraph(_temp);
-            edges.addAll(_temp);
-        }
-
-        int iteration = 0;
-        for (int i = 101; i < 9999; i++) {
-            LOGGER.info("Iteration: " + i);
-            Set<Edge> _temp = new HashSet<>();
-            CoffeeMachine_Model test = new CoffeeMachine_Model();
-            test.generateGraph(_temp);
-            edges.addAll(_temp);
-
-            for (Edge edge: edges){
-                String source = edge.getSource();
-                String target = edge.getTarget();
-                nodesSet.add(source);
-                nodesSet.add(target);
-            }
-
-            nodeOrderSet.addAll(nodesSet);
-
-            int nodeCount = 0;
-            for (String node : nodeOrderSet) {
-                String nodeNumber = "S" + nodeCount;
-                nodeNumbers.put(node, nodeNumber);
-                nodeCount++;
-            }
-
-            int sumEdge = 0;
-            for (String node : nodeNumbers.keySet()) {
-                String nodeNumber = nodeNumbers.get(node);
-//                LOGGER.info("Node: " + nodeNumber);
-//                LOGGER.info("State: " + node);
-//
-//                LOGGER.info("OutEdges:");
-                Set<String> visitedApis = new HashSet<>();
-                int temp = 0;
-                for (Edge edge : edges) {
-                    if (edge.getSource().equals(node)) {
-                        String target = edge.getTarget();
-                        String api = edge.getApi();
-                        String targetAndApi = target + " " + api;
-                        if (!visitedApis.contains(targetAndApi)) {
-//                            LOGGER.info("- " + nodeNumbers.get(target) + ", API = \"" + api + "\" + " + " " + target);
-                            visitedApis.add(targetAndApi);
-                            temp++;
-                        }
-                    }
-                }
-//                System.out.println();
-                sumEdge += temp;
-            }
-
-            // 输出节点总数
-            LOGGER.info("Node Count: " + nodeCount);
-            LOGGER.info("Sum Edge: " + sumEdge);
-
-            sizeHistory[historyIndex] = sumEdge;
-            historyIndex = (historyIndex + 1) % 20;
-            LOGGER.info("[History]: " + Arrays.toString(sizeHistory));
-            LOGGER.info("------------------------");
-//            LOGGER.info("[Current]: " + edges.size());
-
-            if (checkSizeConsistency(sizeHistory)) {
-                break;
-            }
-            iteration = i+1;
-        }
-
-        LOGGER.info("\n\n\n\n------------------------");
-        LOGGER.info("[Finished generating graph]");
-        LOGGER.info("[Total]: " + edges.size());
-
-        // Construct Dot Graph
-        Map<String, String> nodeMap = new HashMap<>();
-        Set<String> _nodesSet = new TreeSet<>();
-        Set<String> _nodeOrderSet = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
-        Set<Edge> dotSet = new HashSet<>();
-        for (Edge edge : edges){
-            String source = edge.getSource();
-            String target = edge.getTarget();
-            _nodesSet.add(source);
-            _nodesSet.add(target);
-        }
-
-        _nodeOrderSet.addAll(nodesSet);
-
-        // 统计节点数量
-        int _nodeCount = 0;
-        for (String node : _nodeOrderSet) {
-            String nodeNumber = "S" + _nodeCount;
-            nodeMap.put(node, nodeNumber);
-            _nodeCount++;
-        }
-
-        for (String node : nodeMap.keySet()) {
-            String nodeNumber = nodeMap.get(node);
-            LOGGER.info("Node: " + nodeNumber);
-            LOGGER.info("State: " + node);
-
-            LOGGER.info("OutEdges:");
-            Set<String> visitedApis = new HashSet<>();
-            for (Edge edge : edges) {
-                if (edge.getSource().equals(node)) {
-                    String target = edge.getTarget();
-                    String api = edge.getApi();
-                    String targetAndApi = target + " " + api;
-                    if (!visitedApis.contains(targetAndApi)) {
-                        LOGGER.info("- " + nodeMap.get(target) + ", API = \"" + api + "\" + " + " " + target);
-                        userGraph.setEdge(new Node(nodeNumber, node).toString(), new Node(nodeMap.get(target), target).toString(), api, api);
-                        dotSet.add(new Edge(nodeNumber, nodeMap.get(target), api));
-                        visitedApis.add(targetAndApi);
-                    }
-                }
-            }
-            System.out.println();
-        }
-
-        long endTime = System.nanoTime(); // end time
-        long elapsedTime = endTime - startTime; // calculate elapsed time
-
-        double seconds = (double) elapsedTime / 1000000000.0; // convert to seconds
-
-        LOGGER.info("Program ran for " + seconds + " seconds.");
-
-        LOGGER.info("Node number: " + nodeMap.size()+", Edge number: "+dotSet.size()+", Iteration: "+iteration);
-
-        String dotFile = "src/main/java/MOCO/modelFiles/coffeeMachine_output.dot";
-        generateDotFile(dotSet, nodeMap.size(), dotFile);
-
-        LOGGER.info("=========== Graph Show ==============");
-        Collection<graph.Edge> edge = userGraph.getEdges();
-        String fileName = "src/main/java/MOCO/modelFiles/coffeeMachine.json";
-        saveEdgesToFile(edge, fileName);
-
+        long startTime = System.nanoTime();
+        CoffeeMachine_Model learner = new CoffeeMachine_Model();
+        // 100 warm-up runs, then iterate until the edge count is stable
+        Set<Edge> edges = learner.learnEdges(100, 9999);
+        LOGGER.info("[Finished generating graph] Total edges: {}", edges.size());
+        Map<String, String> nodeMap = learner.export(edges,
+                "src/main/java/MOCO/modelFiles/coffeeMachine_output.dot",
+                "src/main/java/MOCO/modelFiles/coffeeMachine.json");
+        double seconds = (System.nanoTime() - startTime) / 1000000000.0;
+        LOGGER.info("Program ran for {} seconds.", seconds);
+        LOGGER.info("Node number: {}, Edge number: {}", nodeMap.size(), edges.size());
     }
-
-    private static boolean checkSizeConsistency(int[] sizeHistory) {
-        if (sizeHistory[0] == 0) {
-            return false;
-        }
-
-        int size = sizeHistory[0];
-        for (int i = 1; i < sizeHistory.length; i++) {
-            if (sizeHistory[i] != size) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
 }

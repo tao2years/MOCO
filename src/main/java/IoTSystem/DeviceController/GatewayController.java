@@ -5,122 +5,75 @@ import VirtualDevice.Gateway;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class GatewayController {
+public class GatewayController extends AbstractDeviceController<Gateway, GatewayTwin> {
     private static final Logger LOGGER = LogManager.getLogger();
-    String deviceId;
-    Gateway gateway;
-    GatewayTwin gatewayTwin;
 
-    public String getDeviceId() {
-        return deviceId;
-    }
-
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
+    public GatewayController(String deviceId, Gateway gateway, GatewayTwin gatewayTwin) {
+        super(deviceId, gateway, gatewayTwin, Gateway.class, GatewayTwin.class);
     }
 
     public Gateway getGateway() {
-        return gateway;
+        return getDevice();
     }
 
     public void setGateway(Gateway gateway) {
-        this.gateway = gateway;
+        setDevice(gateway);
     }
 
     public GatewayTwin getGatewayTwin() {
-        return gatewayTwin;
+        return getTwin();
     }
 
     public void setGatewayTwin(GatewayTwin gatewayTwin) {
-        this.gatewayTwin = gatewayTwin;
-    }
-
-    public GatewayController(String deviceId, Gateway gateway, GatewayTwin gatewayTwin) {
-        this.deviceId = deviceId;
-        this.gateway = gateway;
-        this.gatewayTwin = gatewayTwin;
+        setTwin(gatewayTwin);
     }
 
     public void turnLightOn() {
-        String result = gateway.turnLightOn();
-        if (result.equals("success"))
-            gatewayTwin.setLightOn(true);
+        if (getGateway().turnLightOn().equals("success"))
+            getGatewayTwin().setLightOn(true);
     }
 
     public void turnLightOff() {
-        String result = gateway.turnLightOff();
-        if (result.equals("success"))
-            gatewayTwin.setLightOn(false);
+        if (getGateway().turnLightOff().equals("success"))
+            getGatewayTwin().setLightOn(false);
     }
 
     public void setLightBrightness(int brightness) {
-        String result = gateway.setLightBrightness(brightness);
-        if (result.equals("success"))
-            gatewayTwin.setLightBrightness(brightness);
+        if (getGateway().setLightBrightness(brightness).equals("success"))
+            getGatewayTwin().setLightBrightness(brightness);
     }
 
     public void turnAlarmOn() {
-        String result = gateway.turnAlarmOn();
-        if (result.equals("success"))
-            gatewayTwin.setAlarmOn(true);
+        if (getGateway().turnAlarmOn().equals("success"))
+            getGatewayTwin().setAlarmOn(true);
     }
 
     public void turnAlarmOff() {
-        String result = gateway.turnAlarmOff();
-        if (result.equals("success"))
-            gatewayTwin.setAlarmOn(false);
+        if (getGateway().turnAlarmOff().equals("success"))
+            getGatewayTwin().setAlarmOn(false);
     }
 
     public void addDevice(String device) {
-        String result = gateway.addDevice(device);
-        if (result.equals("success")) {
-            int deviceList = gatewayTwin.getDeviceList()+1;
-            gatewayTwin.setDeviceList(deviceList);
-        }
+        if (getGateway().addDevice(device).equals("success"))
+            getGatewayTwin().setDeviceList(getGatewayTwin().getDeviceList() + 1);
     }
 
     public void removeDevice(String device) {
-        String result = gateway.removeDevice(device);
-        if (result.equals("success")) {
-            int deviceList = gatewayTwin.getDeviceList()-1;
-            gatewayTwin.setDeviceList(deviceList);
-        }
-    }
-
-
-
-    public void printInternalState(){
-        LOGGER.info("Device ID: " + deviceId);
-        String gateway2String = gateway.toString();
-        LOGGER.info("Gateway: " + gateway2String);
-        String gatewayTwin2String = gatewayTwin.toString();
-        LOGGER.info("Gateway Twin: " + gatewayTwin2String);
-        boolean equal = gateway2String.replace("Gateway","").equals(gatewayTwin2String.replace("GatewayTwin",""));
-        LOGGER.info("Equal: " + equal);
+        if (getGateway().removeDevice(device).equals("success"))
+            getGatewayTwin().setDeviceList(getGatewayTwin().getDeviceList() - 1);
     }
 
     public static void main(String[] args) {
-        Gateway gateway = new Gateway();
-        GatewayTwin gatewayTwin = new GatewayTwin();
-        GatewayController transGatewayController = new GatewayController("gateway1", gateway, gatewayTwin);
-        transGatewayController.turnLightOn();
-        LOGGER.info("[*] Turn light on");
-        transGatewayController.printInternalState();
-        transGatewayController.setLightBrightness(50);
-        LOGGER.info("[*] Set light brightness to 50");
-        transGatewayController.printInternalState();
-        transGatewayController.turnAlarmOn();
-        LOGGER.info("[*] Turn alarm on");
-        transGatewayController.printInternalState();
-        transGatewayController.addDevice("device1");
-        transGatewayController.addDevice("device2");
-        transGatewayController.addDevice("device3");
-        transGatewayController.printInternalState();
-        transGatewayController.removeDevice("device1");
-        transGatewayController.turnAlarmOff();
-        transGatewayController.turnLightOff();
-        LOGGER.info("[*] Turn alarm off and light off");
-        transGatewayController.printInternalState();
+        GatewayController controller = new GatewayController("gateway1",
+                new Gateway(), new GatewayTwin());
+        controller.turnLightOn();
+        controller.setLightBrightness(50);
+        controller.turnAlarmOn();
+        controller.addDevice("device1");
+        controller.addDevice("device2");
+        controller.removeDevice("device1");
+        controller.turnAlarmOff();
+        controller.turnLightOff();
+        controller.printInternalState();
     }
-
 }
